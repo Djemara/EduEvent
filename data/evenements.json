@@ -1,0 +1,288 @@
+[
+  {
+    "id": 1,
+    "titre": "Conférence Nationale sur l'Intelligence Artificielle",
+    "categorie": "conference",
+    "description": "Une journée entière dédiée aux avancées de l'IA dans le monde académique et professionnel. Des experts haïtiens et internationaux partageront leurs recherches et expériences.",
+    "date": "2026-07-28",
+    "heure": "09:00",
+    "lieu": "Auditorium, Campus Limonade",
+    "organisateur": "Département Informatique - UEH",
+    "places_total": 200,
+    "places_restantes": 47,
+    "image": "images/events/conference-ia.jpg",
+    "vedette": true,
+    "tags": [
+      "IA",
+      "technologie",
+      "recherche"
+    ]
+  },
+  {
+    "id": 2,
+    "titre": "Atelier Développement Web Moderne",
+    "categorie": "atelier",
+    "description": "Apprenez les fondamentaux de HTML5, CSS3 et JavaScript en pratiquant sur des projets réels. Atelier animé par des étudiants de L4 Informatique.",
+    "date": "2026-07-30",
+    "heure": "14:00",
+    "lieu": "Auditorium, Campus Limonade",
+    "organisateur": "Club Tech UEH",
+    "places_total": 30,
+    "places_restantes": 8,
+    "image": "images/events/atelier-web.jpg",
+    "vedette": true,
+    "tags": [
+      "web",
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ]
+  },
+  {
+    "id": 3,
+    "titre": "Tournoi Inter-Facultés de Football",
+    "categorie": "sport",
+    "description": "Le grand tournoi annuel qui réunit toutes les facultés de l'UEH. Venez supporter votre équipe et vivre une journée de compétition intense et conviviale.",
+    "date": "2026-08-02",
+    "heure": "08:00",
+    "lieu": "Terrain Sportif, Campus Henry Christophe",
+    "organisateur": "Association Sportive UEH",
+    "places_total": 500,
+    "places_restantes": 312,
+    "image": "images/events/football.jpg",
+    "vedette": true,
+    "tags": [
+      "sport",
+      "football",
+      "compétition"
+    ]
+  },
+  
+    {
+  "id": 4,
+  "titre": "Bal Masqué Universitaire — Nuit de Mystère et de Culture",
+  "categorie": "culture",
+  "description": "Venez célébrer la richesse de la culture haïtienne lors d'un grand bal masqué ! Chaque participant devra arriver avec un costume et un masque — personne ne saura qui vous êtes jusqu'à minuit ! Au programme : performance live du groupe musical Kreyòl la, danses traditionnelles haïtiennes, décorations féeriques et prix pour le plus beau costume de la soirée. Une nuit inoubliable pour toute la communauté universitaire du Campus Henry Christophe.",
+  "date": "2026-07-23",
+  "heure": "19:00",
+  "lieu": " Campus Henry Christophe",
+  "organisateur": "Club Culturel FSG",
+  "places_total": 200,
+  "places_restantes": 150,
+  "image": "images/events/culture.png",
+  "vedette": false,
+  "tags": ["bal masqué", "culture", "Kreyòl", "costume", "danse"]
+
+  },
+  {
+    "id": 5,
+    "titre": "Séminaire sur la Cybersécurité",
+    "categorie": "conference",
+    "description": "Introduction aux bases de la cybersécurité, protection des données personnelles et bonnes pratiques numériques pour les étudiants.",
+    "date": "2026-08-10",
+    "heure": "10:00",
+    "lieu": "Auditorium, Campus Limonade",
+    "organisateur": "Département Informatique - UEH",
+    "places_total": 80,
+    "places_restantes": 55,
+    "image": "images/events/cybersecurite.jpg",
+    "vedette": false,
+    "tags": [
+      "sécurité",
+      "numérique",
+      "données"
+    ]
+  },
+  {
+    "id": 6,
+    "titre": "Atelier Bases de Données & SQL",
+    "categorie": "atelier",
+    "description": "Maîtrisez la conception de bases de données relationnelles avec Merise et SQL. Travaux pratiques sur MariaDB inclus.",
+    "date": "2026-08-12",
+    "heure": "13:00",
+    "lieu": "Salle Informatique B304, Campus Limonade",
+    "organisateur": "Club Tech UEH",
+    "places_total": 25,
+    "places_restantes": 10,
+    "image": "images/events/atelier-bdd.jpg",
+    "vedette": false,
+    "tags": [
+      "SQL",
+      "base de données",
+      "Merise"
+    ]
+  },
+  {
+    "id": 7,
+    "titre": "Journée Portes Ouvertes FSG",
+    "categorie": "culture",
+    "description": "Découvrez les programmes et laboratoires de la Faculté des Sciences et de Génie. Rencontres avec les professeurs et étudiants actuels.",
+    "date": "2026-08-15",
+    "heure": "09:00",
+    "lieu": "Faculté des Sciences et de Génie, Limonade",
+    "organisateur": "Administration FSG",
+    "places_total": 1000,
+    "places_restantes": 750,
+    "image": "images/events/portes-ouvertes.jpg",
+    "vedette": false,
+    "tags": [
+      "FSG",
+      "orientation",
+      "campus"
+    ]
+  },
+  {
+    "id": 8,
+    "titre": "Hackathon 24h — Solutions pour Haïti",
+    "categorie": "atelier",
+    "description": "24 heures pour concevoir des solutions numériques aux problèmes locaux. En équipes de 3 à 5, développez une application web ou mobile avec impact réel.",
+    "date": "2026-08-20",
+    "heure": "08:00",
+    "lieu": "Auditorium, Campus Limonade",
+    "organisateur": "Département Informatique & Club Tech",
+    "places_total": 60,
+    "places_restantes": 22,
+    "image": "images/events/hackathon.jpg",
+    "vedette": false,
+    "tags": [
+      "hackathon",
+      "innovation",
+      "développement"
+    ]
+  },
+  {
+    "id": 9,
+    "titre": "Compétition de Basketball Inter-Campus",
+    "categorie": "sport",
+    "description": "Tournoi de basketball opposant les équipes des différents campus de l'UEH. Ambiance garantie et prix pour les trois premières équipes.",
+    "date": "2026-08-22",
+    "heure": "10:00",
+    "lieu": "Gymnase du Campus Henry Christophe",
+    "organisateur": "Association Sportive UEH",
+    "places_total": 200,
+    "places_restantes": 145,
+    "image": "images/events/basketball.jpg",
+    "vedette": false,
+    "tags": [
+      "sport",
+      "basketball",
+      "compétition"
+    ]
+  },
+  {
+    "id": 10,
+    "titre": "Conférence sur le Développement Durable",
+    "categorie": "conference",
+    "description": "Comment les technologies numériques peuvent-elles contribuer au développement durable en Haïti ? Débat avec des experts locaux et internationaux.",
+    "date": "2026-08-25",
+    "heure": "09:30",
+    "lieu": "Amphithéâtre Principal, FSG",
+    "organisateur": "Département Sciences - UEH",
+    "places_total": 150,
+    "places_restantes": 98,
+    "image": "images/events/developpement-durable.png",
+    "vedette": false,
+    "tags": [
+      "environnement",
+      "développement",
+      "technologie"
+    ]
+  },
+  {
+    "id": 11,
+    "titre": "Atelier Conception UI/UX",
+    "categorie": "atelier",
+    "description": "Introduction à la conception d'interfaces utilisateur avec Figma. Prototypage, maquettes et principes du design centré utilisateur.",
+    "date": "2026-08-27",
+    "heure": "14:00",
+    "lieu": "Salle Informatique B304, Campus Limonade",
+    "organisateur": "Club Tech UEH",
+    "places_total": 20,
+    "places_restantes": 5,
+    "image": "images/events/atelier-uiux.jpg",
+    "vedette": false,
+    "tags": [
+      "design",
+      "Figma",
+      "UX",
+      "UI"
+    ]
+  },
+  {
+    "id": 12,
+    "titre": "Soirée Théâtrale Universitaire",
+    "categorie": "culture",
+    "description": "La troupe théâtrale de l'UEH présente ses meilleures pièces de l'année. Une soirée de talent, d'émotion et de créativité estudiantine.",
+    "date": "2026-09-02",
+    "heure": "18:00",
+    "lieu": "Auditorium, Campus Limonade",
+    "organisateur": "Club Culturel FSG",
+    "places_total": 120,
+    "places_restantes": 63,
+    "image": "images/events/theatre.jpg",
+    "vedette": false,
+    "tags": [
+      "théâtre",
+      "art",
+      "culture"
+    ]
+  },
+  {
+    "id": 13,
+    "titre": "Forum des Métiers du Numérique",
+    "categorie": "conference",
+    "description": "Rencontrez des professionnels du secteur numérique haïtien. Opportunités de stage, d'emploi et de mentorat pour les étudiants en informatique.",
+    "date": "2026-09-05",
+    "heure": "09:00",
+    "lieu": "Auditorium, Campus Limonade",
+    "organisateur": "Administration FSG & Partenaires",
+    "places_total": 250,
+    "places_restantes": 180,
+    "image": "images/events/forum-metiers.jpg",
+    "vedette": false,
+    "tags": [
+      "carrière",
+      "emploi",
+      "numérique",
+      "stage"
+    ]
+  },
+  {
+    "id": 14,
+    "titre": "Atelier Python & Data Science",
+    "categorie": "atelier",
+    "description": "Initiation à Python pour l'analyse de données. Manipulation de données avec Pandas, visualisation avec Matplotlib et introduction au Machine Learning.",
+    "date": "2026-09-08",
+    "heure": "13:00",
+    "lieu": "Auditorium, Campus Limonade",
+    "organisateur": "Département Informatique - UEH",
+    "places_total": 30,
+    "places_restantes": 18,
+    "image": "images/events/atelier-python.jpg",
+    "vedette": false,
+    "tags": [
+      "Python",
+      "data science",
+      "machine learning"
+    ]
+  },
+  {
+    "id": 15,
+    "titre": "Marathon Universitaire du Campus",
+    "categorie": "sport",
+    "description": "Course à pied de 10 km autour du Campus Henry Christophe. Ouvert à tous les étudiants, enseignants et personnels. Prix pour les 10 premiers.",
+    "date": "2026-09-12",
+    "heure": "06:30",
+    "lieu": "Départ : Entrée principale, Campus Limonade",
+    "organisateur": "Association Sportive UEH",
+    "places_total": 150,
+    "places_restantes": 87,
+    "image": "images/events/marathon.png",
+    "vedette": false,
+    "tags": [
+      "sport",
+      "course",
+      "marathon"
+    ]
+  }
+]
