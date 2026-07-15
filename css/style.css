@@ -357,7 +357,7 @@ nav, .header nav {
   content: '';
   position: absolute;
   inset: 0;
- background: linear-gradient(135deg, rgba(15,43,107,0.55) 0%, rgba(26,86,219,0.45) 55%, rgba(37,99,235,0.35) 100%);
+   background: linear-gradient(135deg, rgba(15,43,107,0.55) 0%, rgba(26,86,219,0.45) 55%, rgba(37,99,235,0.35) 100%);
   z-index: 2; /* Mete l anlè imaj yo */
 }
 
