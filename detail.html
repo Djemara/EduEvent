@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Détail d'un événement — EduEvent" />
+  <title>Détail événement — EduEvent</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      
+      <!-- Logo -->
+      <a href="index.html" class="header__logo">
+        <img src="images/logo-chcl (2).jpg" alt="UEH-CHCL" class="logo__img">
+        <span class="logo__text">Edu<strong>Event</strong></span>
+      </a>
+
+      <!-- Liens de navigation (Nettoyés des styles en ligne importants) -->
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link active">Accueil</a></li>
+          <li><a href="evenements.html" class="nav__link">Événements</a></li>
+          <li><a href="detail.html" class="nav__link">Détail</a></li>
+          <li><a href="a-propos.html" class="nav__link">À propos</a></li>
+        </ul>
+      </nav>
+
+      <!-- Connexion & Menu Burger -->
+      <div class="header__actions">
+        <a href="profil.html" class="btn btn--outline">Connexion</a>
+        
+        <!-- Le bouton hamburger est maintenant contrôlable par le fichier responsive.css -->
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+  <main>
+
+    <!-- ===== BANNIÈRE ===== -->
+<section class="detail-banner" id="detail-banner" style="height:420px;position:relative;overflow:hidden;">
+  <div class="detail-banner__img" id="banner-img" style="background-size:cover;background-position:center;width:100%;height:100%;position:absolute;inset:0;"></div>
+  <div class="detail-banner__overlay">
+    <div class="container">
+      <a href="evenements.html" class="btn-retour">← Retour à la liste</a>
+      <div id="banner-badge"></div>
+      <h1 class="detail-banner__title" id="banner-titre"></h1>
+      <div class="detail-banner__meta" id="banner-meta"></div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- ===== CONTENU PRINCIPAL ===== -->
+    <section class="section detail-section">
+      <div class="container detail-grid">
+
+        <!-- Colonne gauche -->
+        <div class="detail-main">
+
+          <!-- Description -->
+          <div class="detail-card">
+            <h2 class="detail-card__title">À propos de cet événement</h2>
+            <p class="detail-card__text" id="detail-description"></p>
+          </div>
+
+          <!-- Commentaires / Témoignages -->
+          <div class="detail-card" id="section-commentaires">
+            <h2 class="detail-card__title">Témoignages</h2>
+            <div class="commentaires-liste" id="commentaires-liste"></div>
+            <form class="commentaire-form" id="commentaire-form" novalidate>
+              <h3 class="commentaire-form__title">Laisser un commentaire</h3>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="com-nom">Nom complet *</label>
+                  <input type="text" id="com-nom" class="form-input" placeholder="Votre nom complet" required />
+                </div>
+                <div class="form-field">
+                  <label for="com-role">Rôle</label>
+                  <input type="text" id="com-role" class="form-input" placeholder="Étudiant L3 Informatique" />
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="com-texte">Votre commentaire *</label>
+                <textarea id="com-texte" class="form-input form-textarea" placeholder="Partagez votre expérience..." required></textarea>
+              </div>
+              <div class="form-field">
+                <label>Note</label>
+                <div class="etoiles" id="etoiles">
+                  <span class="etoile" data-val="1">★</span>
+                  <span class="etoile" data-val="2">★</span>
+                  <span class="etoile" data-val="3">★</span>
+                  <span class="etoile" data-val="4">★</span>
+                  <span class="etoile" data-val="5">★</span>
+                </div>
+                <input type="hidden" id="com-note" value="0" />
+              </div>
+              <p class="form-message" id="com-message" aria-live="polite"></p>
+              <button type="submit" class="btn btn--primary">Publier le commentaire</button>
+            </form>
+          </div>
+
+        </div>
+
+        <!-- Colonne droite -->
+        <aside class="detail-aside">
+
+          <!-- Infos événement -->
+          <div class="aside-card">
+            <h3 class="aside-card__title">Informations</h3>
+            <ul class="info-list" id="info-list"></ul>
+          </div>
+
+          <!-- Compteur de places -->
+          <div class="aside-card places-card" id="places-card">
+            <h3 class="aside-card__title">Places disponibles</h3>
+            <div class="places-bar-wrap">
+              <div class="places-bar">
+                <div class="places-bar__fill" id="places-fill"></div>
+              </div>
+              <p class="places-texte" id="places-texte"></p>
+            </div>
+          </div>
+
+          <!-- Formulaire inscription -->
+          <div class="aside-card">
+            <h3 class="aside-card__title">S'inscrire à cet événement</h3>
+            <form class="inscription-form" id="inscription-form" novalidate>
+              <div class="form-field">
+                <label for="ins-nom">Nom complet *</label>
+                <input type="text" id="ins-nom" class="form-input" placeholder="votre nom complet" required />
+              </div>
+              <div class="form-field">
+                <label for="ins-email">Email *</label>
+                <input type="email" id="ins-email" class="form-input" placeholder="exemple@gmail.com" required />
+              </div>
+              <div class="form-field">
+                <label for="ins-faculte">Faculté *</label>
+                <div class="select-wrap" style="width:100%">
+                  <select id="ins-faculte" class="filtre-select" style="width:100%;min-width:unset" required>
+                     <option value="">Choisir une faculté</option>
+                      <option value="FSG">FSG — Faculte des Sciences et de Génie</option>
+                      <option value="FSS">FSS — Faculte des Sciences de la Sante</option>
+                      <option value="FDSE">FASE — Faculte des Arts et des Sciences de l'Education.</option>
+                      <option value="FSH">FSHS — Faculte des Sciences Humaines et Sociales</option>
+                      <option value="FSTEAT">FSTEAT — Faculte des Sciences de le Terre  et de l'Amenagement du Territoire</option>
+                  </select>
+                  <span class="select-arrow">▾</span>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="ins-telephone">Téléphone</label>
+                <input type="tel" id="ins-telephone" class="form-input" placeholder="+509 XXXX XXXX" />
+              </div>
+              <p class="form-message" id="ins-message" aria-live="polite"></p>
+              <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center">
+                Confirmer l'inscription
+              </button>
+            </form>
+          </div>
+
+          <!-- Partage réseaux sociaux -->
+          <div class="aside-card">
+            <h3 class="aside-card__title">Partager</h3>
+            <div class="partage-btns">
+              <a href="#" class="partage-btn partage-btn--fb" id="share-fb">f Facebook</a>
+              <a href="#" class="partage-btn partage-btn--tw" id="share-tw">X Twitter</a>
+              <a href="#" class="partage-btn partage-btn--wa" id="share-wa">💬 WhatsApp</a>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+         <a href="index.html" class="header__logo">
+        <img src="images/logo-chcl (2).jpg" alt="UEH-CHCL" class="logo__img">
+        <span class="logo__text">Edu<strong>Event</strong></span>
+      </a>
+        <p class="footer__tagline">La plateforme des événements du Campus Henry Christophe</p>
+      </div>
+      <div class="footer__links">
+        <h4 class="footer__heading">Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="profil.html">Mon profil</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4 class="footer__heading">Catégories</h4>
+        <ul>
+          <li><a href="evenements.html?cat=conference">Conférences</a></li>
+          <li><a href="evenements.html?cat=atelier">Ateliers</a></li>
+          <li><a href="evenements.html?cat=sport">Sports</a></li>
+          <li><a href="evenements.html?cat=culture">Culture</a></li>
+        </ul>
+      </div>
+      <div class="footer__social">
+        <h4 class="footer__heading">Suivez-nous</h4>
+        <div class="social__icons">
+          <a href="#" class="social__link" aria-label="Facebook">f</a>
+          <a href="#" class="social__link" aria-label="Instagram">in</a>
+          <a href="#" class="social__link" aria-label="Twitter">X</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© 2026 EduEvent — Université d'État d'Haïti · FSG · Campus Henry Christophe à Limonade</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/evenements.js"></script>
+  <script src="js/detail.js"></script>
+</body>
+</html>

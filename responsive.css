@@ -1,0 +1,389 @@
+
+
+
+/* ------------------------------------------------------------
+   2. MEDIA QUERIES (Ordre décroissant pour écrasement propre)
+   ------------------------------------------------------------ */
+
+/* ----- TABLETTE (≤ 1024px) ----- */
+@media (max-width: 1024px) {
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+ 
+  .footer__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+ 
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ----- PAGE À PROPOS (≤ 900px) ----- */
+@media (max-width: 900px) {
+  .presentation__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+ 
+  .presentation__visual {
+    height: 220px;
+    order: -1;
+  }
+ 
+  .equipe__grid {
+    grid-template-columns: 1fr;
+  }
+ 
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+}
+ 
+/* ----- TABLETTE ÉTROITE AK TELEFÒN (≤ 768px) ----- */
+@media (max-width: 768px) {
+  .nav {
+    position: fixed;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 1.5rem;
+    transform: translateY(-120%);
+    transition: transform 0.3s ease;
+    z-index: 99;
+    box-shadow: 0 8px 24px rgba(0,0,0,.1);
+  }
+  
+  
+  /* === AJOUTE LIY SA YO ANNDAN BLÒK 768px OU A === */
+
+  .hamburger {
+    display: flex !important; /* Sa ap fòse 3 bar yo parèt sou mobil kounye a */
+  }
+
+  .header__inner {
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+
+  /* Nou kache meni PC a pou l pa jennen kòd la */
+  nav, .header nav {
+    display: none !important; 
+    position: fixed !important;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: #ffffff !important;
+    box-shadow: var(--shadow-md);
+    padding: 20px !important;
+  }
+
+  .nav__list {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
+  .nav__list li {
+    margin: 0 !important; /* Retire espas PC a */
+  }
+
+  /* Lè w a mete JS a, sa ap louvri meni an */
+  nav.open, .header nav.open {
+    display: flex !important;
+  }
+
+  /* ============================================== */
+  /*  KITE TOUT RÈS KÒD REPOSNIVE OU YO TRANKIL ICIT */
+  /* ============================================== */
+
+ 
+  .nav.open {
+    transform: translateY(0);
+  }
+ 
+  .nav__list {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+ 
+  .nav__link {
+    display: block;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 1rem;
+  }
+ 
+  
+ 
+  .hero {
+    min-height: 75vh;
+    text-align: center;
+  }
+ 
+  .hero__cta {
+    justify-content: center;
+  }
+ 
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+ 
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+ 
+  .newsletter__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+ 
+  .newsletter__form {
+    width: 100%;
+  }
+ 
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .filtres-section {
+    position: static;
+  }
+ 
+  .filtre-groupe--right {
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+ 
+  .filtres {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  @media (max-width: 768px) {
+
+  /* 1. Nou mete lòd nan pati dwat la pou bouton an ak bar yo kòt a kòt san kolizyon */
+  .header__actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important; /* Bay espas ant bouton Connexion ak 3 bar yo */
+  }
+
+  /* 2. Nou fòse 3 bar yo parèt ak nouvo fòm nan */
+  .hamburger {
+    display: flex !important;
+  }
+
+  /* 3. Nou rann bouton Connexion an pi piti sou mobil pou l pa pran tout plas la */
+  .header__actions .btn {
+    padding: 0.4rem 1rem !important; 
+    font-size: 0.85rem !important;     
+    height: 34px !important; /* Li vin pi kout pou l pa jennen */
+  }
+
+  /* 4. Nou asire Header a gen ase wotè pou anyen pa debòde */
+  .header {
+    padding: 10px 0 !important;
+  }
+}@media (max-width: 768px) {
+
+  /* 1. Nou chanje jan meni an kache : nou leve l anlè epi n rann li envizib */
+  nav, .header nav {
+    display: flex !important; /* Nou kite l an flex */
+    position: fixed !important;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: #ffffff !important;
+    box-shadow: var(--shadow-md);
+    padding: 20px !important;
+    
+    /* TI MAGI POU KACHE L : Nou voye l monte anlè nèt epi n kache l */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-20px) !important;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease !important;
+  }
+
+  /* 2. LÈ SOURIT LA PWENTE (HOVER) : Nou fè meni an desann epi l parèt */
+  .header:hover nav, 
+  .header:hover .header nav {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important; /* Li desann nan plas li pwòp */
+  }
+
+  /* Nou asire lis la toujou an kolòn */
+  .nav__list {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+
+  .nav__list li {
+    margin: 0 !important;
+    text-align: center !important;
+  }
+}
+
+
+}
+
+/* ----- PAGE DÉTAIL, PROFIL & À PROPOS (≤ 600px) ----- */
+@media (max-width: 600px) {
+  .detail-banner {
+    height: 280px;
+  }
+ 
+  .detail-aside, .form-row {
+    grid-template-columns: 1fr;
+  }
+ 
+  .detail-banner__meta {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .auth-card {
+    padding: 1.5rem;
+  }
+ 
+  .profil-header {
+    flex-direction: column;
+    text-align: center;
+  }
+ 
+  .profil-header .btn {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+ 
+  .inscription-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+ 
+  .btn--danger {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .presentation__stats {
+    flex-wrap: wrap;
+    gap: 1.2rem;
+  }
+ 
+  .accordion-header {
+    padding: 1rem 1.2rem;
+    font-size: 0.88rem;
+  }
+
+  /* KOREKSYON EDGE MOBIL : Passage strict à 1 seule colonne */
+  .cards-grid.vue-liste .card {
+    display: flex !important;
+    flex-direction: column !important;
+    max-height: none !important;
+    grid-template-columns: 1fr !important;
+  }
+ 
+  .cards-grid.vue-liste .card .card__image-wrap {
+    width: 100% !important;
+    height: 200px !important;
+    grid-column: 1 !important;
+  }
+ 
+  .cards-grid.vue-liste .card .card__body {
+    grid-column: 1 !important;
+    padding: 1.5rem !important;
+  }
+
+  .cards-grid.vue-liste .card .card__footer {
+    grid-column: 1 !important;
+    position: static !important;
+    border-left: none !important;
+    border-top: 1px solid var(--color-border) !important;
+    padding: 1rem 1.5rem !important;
+    width: 100% !important;
+  }
+
+  .cards-grid.vue-liste .card .card__footer .btn {
+    width: 100% !important;
+  }
+}
+ 
+/* ----- TI TELEFÒN (≤ 480px) ----- */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+ 
+  .hero__title {
+    font-size: 1.8rem;
+  }
+ 
+  .stats__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+ 
+  .form-group {
+    flex-direction: column;
+  }
+ 
+  .form-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+ 
+  .btn--lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+/* ============================================================
+   KOREKSYON KAT EVÈNMAN (VUE LISTE) POU MOBIL (≤ 600px)
+   ============================================================ */
+@media (max-width: 600px) {
+
+  /* 1. Nou di gri an pou l pran yon sèl kolòn olye de 2 */
+  html body #evenements-grid.cards-grid.vue-liste .card {
+    grid-template-columns: 1fr !important; /* Sa ap anile 2 kolòn PC a */
+    min-height: auto !important;
+    display: flex !important;
+    flex-direction: column !important; /* Imaj anlè, tèks anba */
+  }
+
+  /* 2. Imaj la ap pran tout lajè a anlè nòmalman */
+  html body #evenements-grid.cards-grid.vue-liste .card .card__image-wrap {
+    grid-column: 1 !important;
+    width: 100% !important;
+    height: 180px !important; /* Wotè fiks pou imaj la sou mobil */
+  }
+
+  /* 3. Blòk tèks la ap desann anba imaj la pwòp */
+  html body #evenements-grid.cards-grid.vue-liste .card .card__body {
+    grid-column: 1 !important;
+    padding: 15px 20px !important; /* Ti espas sekirite pou Edge */
+  }
+
+  /* 4. Bouton an ap ret anba nèt san li pa monte sou enfòmasyon yo */
+  html body #evenements-grid.cards-grid.vue-liste .card .card__footer {
+    grid-column: 1 !important;
+    position: static !important; /* Retire tout blokaj "absolute" */
+    padding: 0 20px 20px 20px !important;
+    margin-top: 10px !important;
+    display: flex !important;
+    width: 100% !important;
+  }
+
+  /* 5. Bouton an ap pran tout lajè ekran mobil lan pou l pi fasil pou klike */
+  html body #evenements-grid.cards-grid.vue-liste .card .card__footer .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+

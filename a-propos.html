@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="À propos de EduEvent — Campus Henry Christophe, UEH" />
+  <title>À propos — EduEvent</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      
+      <!-- Logo -->
+      <a href="index.html" class="header__logo">
+        <img src="images/logo-chcl (2).jpg" alt="UEH-CHCL" class="logo__img">
+        <span class="logo__text">Edu<strong>Event</strong></span>
+      </a>
+
+      <!-- Liens de navigation (Nettoyés des styles en ligne importants) -->
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link active">Accueil</a></li>
+          <li><a href="evenements.html" class="nav__link">Événements</a></li>
+          <li><a href="detail.html" class="nav__link">Détail</a></li>
+          <li><a href="a-propos.html" class="nav__link">À propos</a></li>
+        </ul>
+      </nav>
+
+      <!-- Connexion & Menu Burger -->
+      <div class="header__actions">
+        <a href="profil.html" class="btn btn--outline">Connexion</a>
+        
+        <!-- Le bouton hamburger est maintenant contrôlable par le fichier responsive.css -->
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+  <main>
+
+    <!-- ===== HERO MINI ===== -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="hero__eyebrow">Campus Henry Christophe · UEH</span>
+        <h1 class="page-hero__title">À propos d'EduEvent</h1>
+        <p class="page-hero__subtitle">La plateforme qui connecte la communauté universitaire à ses événements</p>
+      </div>
+    </section>
+
+    <!-- ===== PRÉSENTATION PLATEFORME ===== -->
+    <section class="section presentation">
+      <div class="container presentation__grid">
+        <div class="presentation__text">
+          <span class="section__eyebrow">Notre mission</span>
+          <h2 class="presentation__title">Une plateforme pensée pour le Campus</h2>
+          <p class="presentation__paragraph">
+            EduEvent est née d'un constat simple : les événements universitaires du Campus
+            Henry Christophe manquaient d'un espace centralisé pour être annoncés, découverts
+            et suivis par la communauté étudiante.
+          </p>
+          <p class="presentation__paragraph">
+            Conférences, ateliers techniques, compétitions sportives ou activités culturelles —
+            notre plateforme rassemble tout ce qui anime la vie du campus en un seul endroit,
+            accessible à tout moment.
+          </p>
+          <div class="presentation__stats">
+            <div class="mini-stat">
+              <span class="mini-stat__number">15+</span>
+              <span class="mini-stat__label">Événements actifs</span>
+            </div>
+            <div class="mini-stat">
+              <span class="mini-stat__number">4</span>
+              <span class="mini-stat__label">Catégories</span>
+            </div>
+            <div class="mini-stat">
+              <span class="mini-stat__number">100%</span>
+              <span class="mini-stat__label">Gratuit</span>
+            </div>
+          </div>
+        </div>
+        <div class="presentation__visual">
+          <div class="visual-card visual-card--1">🎓</div>
+          <div class="visual-card visual-card--2">📅</div>
+          <div class="visual-card visual-card--3">🏆</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ÉQUIPE DE DÉVELOPPEMENT ===== -->
+    <section class="section equipe">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__eyebrow">Les développeurs</span>
+          <h2 class="section__title">Notre équipe</h2>
+          <p class="section__subtitle">Deux étudiants en L3 Informatique passionnés par le développement web</p>
+        </div>
+        <div class="equipe__grid">
+
+          <div class="membre-card">
+            <div class="membre-card__photo">👨🏾‍💻</div>
+            <h3 class="membre-card__nom">AMICY Djemara</h3>
+            <p class="membre-card__role">Développeur Full-Stack</p>
+            <p class="membre-card__desc">
+              Étudiante L3 Informatique à la FSG, passionnée par le développement web et
+              les architectures logicielles.
+            </p>
+            <div class="membre-card__socials">
+              <a href="#" aria-label="LinkedIn">in</a>
+              <a href="#" aria-label="GitHub">gh</a>
+            </div>
+          </div>
+
+          <div class="membre-card">
+            <div class="membre-card__photo">👩🏾‍💻</div>
+            <h3 class="membre-card__nom">Pierre Rosener</h3>
+            <p class="membre-card__role">Développeur Front-End</p>
+            <p class="membre-card__desc">
+              Étudiant(e) L3 Informatique à la FSG, spécialisé(e) dans le design
+              d'interfaces et l'expérience utilisateur.
+            </p>
+            <div class="membre-card__socials">
+              <a href="#" aria-label="LinkedIn">in</a>
+              <a href="#" aria-label="GitHub">gh</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section contact">
+      <div class="container contact__grid">
+
+        <!-- Formulaire de contact -->
+        <div class="contact-form-wrap">
+          <span class="section__eyebrow">Restons en contact</span>
+          <h2 class="presentation__title">Une question ? Contactez-nous</h2>
+          <p class="presentation__paragraph" style="margin-bottom:1.5rem">
+            Une suggestion, un problème technique, ou une idée d'événement à partager ?
+            Écrivez-nous, nous vous répondrons rapidement.
+          </p>
+
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="contact-nom">Nom complet *</label>
+                <input type="text" id="contact-nom" class="form-input" placeholder="Votre nom complet" required />
+              </div>
+              <div class="form-field">
+                <label for="contact-email">Email *</label>
+                <input type="email" id="contact-email" class="form-input" placeholder="exemple@gmail.com" required />
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="contact-sujet">Sujet *</label>
+              <div class="select-wrap" style="width:100%">
+                <select id="contact-sujet" class="filtre-select" style="width:100%;min-width:unset" required>
+                  <option value="">Choisir un sujet</option>
+                  <option value="question">Question générale</option>
+                  <option value="probleme">Problème technique</option>
+                  <option value="suggestion">Suggestion d'amélioration</option>
+                  <option value="evenement">Proposer un événement</option>
+                  <option value="autre">Autre</option>
+                </select>
+                <span class="select-arrow">▾</span>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="contact-message">Message *</label>
+              <textarea id="contact-message" class="form-input form-textarea" placeholder="Votre message..." required></textarea>
+            </div>
+            <p class="form-message" id="contact-feedback" aria-live="polite"></p>
+            <button type="submit" class="btn btn--primary">Envoyer le message</button>
+          </form>
+        </div>
+
+        <!-- Carte interactive -->
+        <div class="contact-map-wrap">
+          <h3 class="aside-card__title">Nous trouver</h3>
+          <div class="map-simule">
+            <div class="map-simule__grid"></div>
+            <div class="map-pin">
+              <span class="map-pin__icon">📍</span>
+              <span class="map-pin__label">Campus Henry Christophe</span>
+            </div>
+          </div>
+          <div class="map-info">
+            <p><strong>📍 Adresse</strong><br />Campus Henry Christophe, Limonade, Haïti</p>
+            <p><strong>📧 Email</strong><br />contact@eduevent-chcl.ht</p>
+            <p><strong>📞 Téléphone</strong><br />+509 0000 0000</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section faq">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__eyebrow">Questions fréquentes</span>
+          <h2 class="section__title">FAQ</h2>
+          <p class="section__subtitle">Tout ce que vous devez savoir sur EduEvent</p>
+        </div>
+
+        <div class="accordion" id="accordion">
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>Comment m'inscrire à un événement ?</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>Rendez-vous sur la page Événements, choisissez celui qui vous intéresse,
+              cliquez sur "Voir les détails", puis remplissez le formulaire d'inscription
+              présent sur la page de détail.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>EduEvent est-il gratuit ?</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>Oui, EduEvent est entièrement gratuit pour tous les membres de la communauté
+              universitaire du Campus Henry Christophe.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>Puis-je annuler mon inscription à un événement ?</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>Oui, connectez-vous à votre espace étudiant, allez dans "Mes événements
+              inscrits" et cliquez sur "Annuler" à côté de l'événement concerné.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>Comment proposer l'organisation d'un événement ?</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>Utilisez le formulaire de contact ci-dessus en sélectionnant le sujet
+              "Proposer un événement", et notre équipe étudiera votre demande.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>Mes données sont-elles sécurisées ?</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>Vos données sont stockées localement dans votre navigateur et ne sont
+              partagées avec aucun tiers. EduEvent respecte votre vie privée.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="header__logo">
+        <img src="images/logo-chcl (2).jpg" alt="UEH-CHCL" class="logo__img">
+        <span class="logo__text">Edu<strong>Event</strong></span>
+      </a>
+        <p class="footer__tagline">La plateforme des événements du Campus Henry Christophe</p>
+      </div>
+      <div class="footer__links">
+        <h4 class="footer__heading">Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="profil.html">Mon profil</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4 class="footer__heading">Catégories</h4>
+        <ul>
+          <li><a href="evenements.html?cat=conference">Conférences</a></li>
+          <li><a href="evenements.html?cat=atelier">Ateliers</a></li>
+          <li><a href="evenements.html?cat=sport">Sports</a></li>
+          <li><a href="evenements.html?cat=culture">Culture</a></li>
+        </ul>
+      </div>
+      <div class="footer__social">
+        <h4 class="footer__heading">Suivez-nous</h4>
+        <div class="social__icons">
+          <a href="#" class="social__link" aria-label="Facebook">f</a>
+          <a href="#" class="social__link" aria-label="Instagram">in</a>
+          <a href="#" class="social__link" aria-label="Twitter">X</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© 2026 EduEvent — Université d'État d'Haïti · FSG · Campus Henry Christophe à Limonade</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
