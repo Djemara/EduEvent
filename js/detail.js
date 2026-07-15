@@ -91,11 +91,9 @@
     bannerImg.style.backgroundImage = '';
     
     // Nou chanje outerHTML pa innerHTML pou nou pa detwi bwat HTML la
-    const badgeContainer = document.getElementById('banner-badge');
-    badgeContainer.style.display = "block";
-    badgeContainer.style.width = "fit-content";
-    badgeContainer.style.marginBottom = "15px";
-    badgeContainer.innerHTML = `<span class="card__badge badge--${evt.categorie}" style="display:inline-block;">${evt.categorie}</span>`;
+    const badge = document.getElementById('banner-badge');
+badge.textContent = evt.categorie;
+badge.className = `card__badge badge--${evt.categorie}`;
 
     document.getElementById('banner-titre').textContent = evt.titre;
  
