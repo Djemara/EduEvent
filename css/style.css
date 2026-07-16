@@ -503,6 +503,17 @@ nav, .header nav {
   animation: bounce 2s infinite;
   z-index: 10 !important; /* On la passe au-dessus pour être sûr qu'elle soit cliquable */
 }
+.hero__scroll a {
+  color: #ffffff;
+  background: var(--color-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
 .hero__title {
   text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
 }
