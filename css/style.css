@@ -368,7 +368,7 @@ nav, .header nav {
 .hero {
   position: relative;
   /* On remonte légèrement de 50vh à 58vh pour donner de la place à la flèche */
-  min-height: 80vh !important; 
+  min-height: 25vh !important; 
   display: flex;
   align-items: center;
   justify-content: center !important;
@@ -1546,8 +1546,8 @@ aside,
  
 /* ===== COMMENTAIRES ===== */
 .commentaires-liste {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 1.2rem;
   margin-bottom: 2rem;
 }
