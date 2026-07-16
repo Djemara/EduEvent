@@ -349,36 +349,29 @@ window.supprimerCommentaire = function(indexStocke) {
   /* ============================================================
      PARTAGE RÉSEAUX SOCIAUX
   ============================================================ */
-  function initPartage(evt) {
-    const fbBtn = document.getElementById('share-fb');
-    const twBtn = document.getElementById('share-tw');
-    const waBtn = document.getElementById('share-wa');
- 
-    const urlUrl = encodeURIComponent(window.location.href);
-    const tèksMesaj = encodeURIComponent(`Inscris-toi à l'événement : ${evt.titre}`);
- 
-    if (fbBtn) {
-      fbBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.open(`https://facebook.com{urlUrl}`, '_blank');
-      });
-    }
- 
-    if (twBtn) {
-      twBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.open(`https://twitter.com{urlUrl}&text=${tèksMesaj}`, '_blank');
-      });
-    }
- 
-    if (waBtn) {
-      waBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.open(`https://whatsapp.com{tèksMesaj}%20${urlUrl}`, '_blank');
-      });
-      
-    }
+ function initPartage(evt) {
+  const fbBtn = document.getElementById('share-fb');
+  const twBtn = document.getElementById('share-tw');
+  const waBtn = document.getElementById('share-wa');
+
+  const urlUrl = encodeURIComponent(window.location.href);
+  const tèksMesaj = encodeURIComponent(`Inscris-toi à l'événement : ${evt.titre}`);
+
+  if (fbBtn) {
+    fbBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${urlUrl}`;
+    fbBtn.target = '_blank';
   }
+
+  if (twBtn) {
+    twBtn.href = `https://twitter.com/intent/tweet?text=${tèksMesaj}&url=${urlUrl}`;
+    twBtn.target = '_blank';
+  }
+
+  if (waBtn) {
+    waBtn.href = `https://wa.me/?text=${tèksMesaj}%20${urlUrl}`;
+    waBtn.target = '_blank';
+  }
+}
 
  
   /* ============================================================
