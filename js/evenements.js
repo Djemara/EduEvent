@@ -5,12 +5,12 @@
 (function () {
  
   /* ---- État global ---- */
-  let tousLesEvenements = [];   // Données brutes du JSON
-  let evenementsFiltres  = [];  // Après application des filtres
+  let tousLesEvenements = [];   
+  let evenementsFiltres  = [];  
   let filtreCategorie    = 'tous';
   let filtreDate         = 'tous';
   let recherche          = '';
-  let vueActuelle        = 'grille';  // 'grille' | 'liste'
+  let vueActuelle        = 'grille'; 
   const PAR_PAGE         = 6;
   let nbAffiches         = PAR_PAGE;
  
@@ -46,7 +46,7 @@
     .catch(() => {
       grid.innerHTML = `
         <p style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--color-text-muted)">
-          ⚠️ Impossible de charger les événements. Assurez-vous d'utiliser un serveur local (Live Server).
+           Impossible de charger les événements. Assurez-vous d'utiliser un serveur local (Live Server).
         </p>`;
     });
  
@@ -183,15 +183,15 @@
       <div class="card__body">
         <h3 class="card__title">${evt.titre}</h3>
         <div class="card__meta">
-          <span>📅 ${dateFormatee}</span>
-          <span>⏰ ${evt.heure}</span>
-          <span>📍 ${evt.lieu}</span>
-          <span>👤 ${evt.organisateur}</span>
+          <span> ${dateFormatee}</span>
+          <span> ${evt.heure}</span>
+          <span>${evt.lieu}</span>
+          <span> ${evt.organisateur}</span>
         </div>
         <p class="card__places ${urgent ? 'urgent' : ''}">
           ${urgent
-            ? '⚠️ Plus que ' + evt.places_restantes + ' places !'
-            : '✅ ' + evt.places_restantes + ' places disponibles'}
+            ? ' Plus que ' + evt.places_restantes + ' places !'
+            :  + evt.places_restantes + ' places disponibles'}
         </p>
       </div>
      <div class="card__footer">
@@ -252,18 +252,34 @@
       elListe.classList.add('vue-btn--active');
       elGrille.classList.remove('vue-btn--active');
       elGrid.classList.add('vue-liste');
-      afficher(); // Sa a enpòtan pou rafrechi paj la
+      afficher(); 
     });
   }
 
-  /* -- KÒD POU CHARGER PLUS LA REPRAN TRAVAY -- */
+
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', () => {
-      nbAffiches += PAR_PAGE; // Li ajoute 6 lòt evènman
-      afficher();            // Li afiche yo sou ekran an
+      nbAffiches += PAR_PAGE; 
+      afficher();            
     });
   }
 
+ /* ===== DARK MODE ===== */
+(function initDarkMode() {
+  const btn = document.getElementById('btn-darkmode');
+  if (!btn) return;
 
+  /* Restore preference */
+  if (localStorage.getItem('eduevent_darkmode') === 'true') {
+    document.body.classList.add('dark');
+    btn.textContent = '☀️';
+  }
+
+  btn.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark');
+    btn.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('eduevent_darkmode', isDark);
+  });
+})();
  
 })();
