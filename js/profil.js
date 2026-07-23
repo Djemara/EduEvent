@@ -37,9 +37,7 @@
   /* ============================================================
      TOGGLE MOT DE PASSE
   ============================================================ */
-    /* ============================================================
-     TOGGLE MOT DE PASSE (Version corrigée sans NaN)
-  ============================================================ */
+    
   document.querySelectorAll('.toggle-password').forEach(btn => {
     btn.addEventListener('click', () => {
       const targetId = btn.getAttribute('data-password-target') || btn.dataset.target;
@@ -78,13 +76,13 @@
     const compte  = comptes.find(c => c.email === email && c.password === password);
  
     if (!compte) {
-      afficherMsg(msg, '❌ Vous n\'avez pas encore de compte, veuillez d\'abord vous inscrire .', 'error');
+      afficherMsg(msg, ' Vous n\'avez pas encore de compte, veuillez d\'abord vous inscrire .', 'error');
       return;
     }
  
     /* Connexion réussie */
     localStorage.setItem('eduevent_utilisateur', JSON.stringify(compte));
-    afficherMsg(msg, '✅ Connexion réussie !', 'success');
+    afficherMsg(msg, ' Connexion réussie !', 'success');
     setTimeout(() => afficherProfil(compte), 800);
   });
  
@@ -123,7 +121,7 @@
     /* Vérifier si email déjà utilisé */
     const comptes = JSON.parse(localStorage.getItem('eduevent_comptes') || '[]');
     if (comptes.find(c => c.email === email)) {
-      afficherMsg(msg, '⚠️ Cet email est déjà utilisé.', 'error');
+      afficherMsg(msg, ' Cet email est déjà utilisé.', 'error');
       return;
     }
  
@@ -137,7 +135,7 @@
     localStorage.setItem('eduevent_comptes', JSON.stringify(comptes));
     localStorage.setItem('eduevent_utilisateur', JSON.stringify(nouveauCompte));
  
-    afficherMsg(msg, '✅ Compte créé avec succès !', 'success');
+    afficherMsg(msg, ' Compte créé avec succès !', 'success');
     setTimeout(() => afficherProfil(nouveauCompte), 800);
   });
  
@@ -212,8 +210,8 @@ const profilPass = document.getElementById('profil-password');
           <div class="inscription-card__info">
             <h4 class="inscription-card__titre">${ins.titre}</h4>
             <div class="inscription-card__meta">
-              <span>📅 ${dateFormatee}</span>
-              <span>📍 ${ins.lieu}</span>
+              <span> ${dateFormatee}</span>
+              <span> ${ins.lieu}</span>
             </div>
           </div>
           <button
@@ -257,5 +255,21 @@ const profilPass = document.getElementById('profil-password');
     el.className = 'form-message ' + type;
     setTimeout(() => { el.textContent = ''; el.className = 'form-message'; }, 5000);
   }
- 
+  /* ===== DARK MODE ===== */
+(function initDarkMode() {
+  const btn = document.getElementById('btn-darkmode');
+  if (!btn) return;
+
+  /* Restore preference */
+  if (localStorage.getItem('eduevent_darkmode') === 'true') {
+    document.body.classList.add('dark');
+    btn.textContent = '☀️';
+  }
+
+  btn.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark');
+    btn.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('eduevent_darkmode', isDark);
+  });
+})();
 })();
