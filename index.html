@@ -20,11 +20,10 @@
       
       <!-- Logo -->
       <a href="index.html" class="header__logo">
-        <img src="images/logo-chcl (2).jpg" alt="UEH-CHCL" class="logo__img">
+        <img src="images/logo-chcl.png" alt="UEH-CHCL" class="logo__img">
         <span class="logo__text">Edu<strong>Event</strong></span>
       </a>
 
-      <!-- Liens de navigation (Nettoyés des styles en ligne importants) -->
       <nav class="nav" id="nav">
         <ul class="nav__list">
           <li><a href="index.html" class="nav__link active">Accueil</a></li>
@@ -36,9 +35,9 @@
 
       <!-- Connexion & Menu Burger -->
       <div class="header__actions">
+        <button class="btn-darkmode" id="btn-darkmode" aria-label="Mode sombre" title="Mode sombre">mode sombre</button>
         <a href="profil.html" class="btn btn--outline">Connexion</a>
         
-        <!-- Le bouton hamburger est maintenant contrôlable par le fichier responsive.css -->
         <button class="hamburger" id="hamburger" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -51,10 +50,8 @@
  
    <!-- ===== HERO ===== -->
 <section class="hero" id="accueil">
-  <!-- Seksyon background nan kote 5 imaj yo ap pase a -->
   <div class="hero__bg">
     <img src="images/hero-bg.jpg" class="hero-slide active" alt="Campus Event 1">
-    
     <img src="images/foto3.png" class="hero-slide" alt="Campus Event 3">
     <img src="images/foto4.png" class="hero-slide" alt="Campus Event 4">
     <img src="images/foto5.png" class="hero-slide" alt="Campus Event 5">
@@ -67,7 +64,7 @@
       <span class="hero__accent">en un seul endroit.</span>
     </h1>
     <p class="hero__subtitle animate-fadein delay-2">
-      Conférences, ateliers, compétitions sportives, activités culturelles —<br />
+      Conférences, ateliers, compétitions sportives, activités culturelles <br />
       découvrez, inscrivez-vous et participez à la vie universitaire.
     </p>
     <div class="hero__cta animate-fadein delay-3">
@@ -161,7 +158,7 @@
     <div class="container footer__inner">
       <div class="footer__brand">
         <a href="index.html" class="header__logo">
-        <img src="images/logo-chcl (2).jpg" alt="UEH-CHCL" class="logo__img">
+        <img src="images/logo-chcl.png" alt="UEH-CHCL" class="logo__img">
         <span class="logo__text">Edu<strong>Event</strong></span>
       </a>
         <p class="footer__tagline">La plateforme des événements du Campus Henry Christophe</p>
@@ -193,12 +190,27 @@
         </div>
       </div>
     </div>
+    <!-- ===== SELEKTÈ GWOSÈ TÈKS (SIZE IN FOOTER) ===== -->
+<div class="footer-accessibility" style="margin-top: 1rem; display: flex; gap: 8px; justify-content: center; align-items: center; padding: 0.5rem 0;">
+  <span style="font-size: 0.8rem; font-weight: 600; color: var(--color-text-muted);">Taille du texte :</span>
+  <button type="button" class="btn-size" data-size="small" style="padding: 4px 10px; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.75rem; cursor: pointer; background: #fff; transition: all var(--transition);">A-</button>
+  <button type="button" class="btn-size active" data-size="medium" style="padding: 4px 10px; border: 1px solid var(--color-primary); border-radius: 4px; font-size: 0.85rem; cursor: pointer; background: var(--color-primary); color: #fff; transition: all var(--transition);">A</button>
+  <button type="button" class="btn-size" data-size="large" style="padding: 4px 10px; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.95rem; cursor: pointer; background: #fff; transition: all var(--transition);">A+</button>
+</div>
+
     <div class="footer__bottom">
       <div class="container">
         <p>© 2026 EduEvent — Université d'État d'Haïti · FSG · Campus Henry Christophe à Limonade</p>
       </div>
+      <!-- ===== BOUTON RETOUR EN HAUT (SCROLL TO TOP) ===== -->
+<button type="button" id="scroll-top-btn" class="btn-scroll-top" title="Retour en haut">
+  ↑
+</button>
+
     </div>
   </footer>
+
+
  
   <script src="js/main.js"></script>
 </body>
