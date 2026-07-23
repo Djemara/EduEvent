@@ -38,7 +38,6 @@
   /* ---- Lire l'ID dans l'URL ---- */
   const params = new URLSearchParams(window.location.search);
   
-  // Si pa gen ID nan URL la, nou fòse li pran 1 de preferans olye l bay NaN
   const id = parseInt(params.get('id'), 10) || 1; 
  
   /* ---- Charger les données ---- */
@@ -52,7 +51,7 @@
       if (!evt) {
         document.querySelector('main').innerHTML = `
           <div style="text-align:center;padding:5rem 1rem;color:var(--color-text-muted)">
-            <p style="font-size:3rem">🔍</p>
+            <p style="font-size:3rem"></p>
             <h2>Événement introuvable</h2>
             <p>Cet événement n'existe pas ou a été supprimé.</p>
             <a href="evenements.html" class="btn btn--primary" style="margin-top:1.5rem;display:inline-flex">
@@ -70,7 +69,7 @@
     .catch(() => {
       document.querySelector('main').innerHTML = `
         <div style="text-align:center;padding:5rem 1rem;color:var(--color-text-muted)">
-          <p>⚠️ Impossible de charger l'événement. Utilisez Live Server.</p>
+          <p> Impossible de charger l'événement. Utilisez Live Server.</p>
           <a href="evenements.html" class="btn btn--outline" style="margin-top:1rem;display:inline-flex">Retour</a>
         </div>`;
     });
@@ -84,16 +83,17 @@
     document.title = evt.titre + ' — EduEvent';
  
     /* Bannière */
-       /* Bannière */
+       
     const bannerImg = document.getElementById('banner-img');
-    // Nou fòse imaj la pran 100% wotè banyè a (420px) san li pa kraze anyen
+  
     bannerImg.innerHTML = `<img src="${evt.image}" alt="${evt.titre}" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.style.display='none'"/>`;
     bannerImg.style.backgroundImage = '';
     
-    // Nou chanje outerHTML pa innerHTML pou nou pa detwi bwat HTML la
-    const badge = document.getElementById('banner-badge');
-badge.textContent = evt.categorie;
-badge.className = `card__badge badge--${evt.categorie}`;
+    const badgeContainer = document.getElementById('banner-badge');
+    badgeContainer.style.display = "block";
+    badgeContainer.style.width = "fit-content";
+    badgeContainer.style.marginBottom = "15px";
+    badgeContainer.innerHTML = `<span class="card__badge badge--${evt.categorie}" style="display:inline-block;">${evt.categorie}</span>`;
 
     document.getElementById('banner-titre').textContent = evt.titre;
  
@@ -102,9 +102,9 @@ badge.className = `card__badge badge--${evt.categorie}`;
     });
  
     document.getElementById('banner-meta').innerHTML = `
-      <span>📅 ${dateFormatee}</span>
-      <span>⏰ ${evt.heure}</span>
-      <span>📍 ${evt.lieu}</span>
+      <span> ${dateFormatee}</span>
+      <span> ${evt.heure}</span>
+      <span>${evt.lieu}</span>
     `;
  
     /* Description */
@@ -113,35 +113,35 @@ badge.className = `card__badge badge--${evt.categorie}`;
     /* Infos liste */
     document.getElementById('info-list').innerHTML = `
       <li class="info-item">
-        <span class="info-item__icon">📅</span>
+        <span class="info-item__icon"></span>
         <div>
           <span class="info-item__label">Date</span>
           <span class="info-item__value">${dateFormatee}</span>
         </div>
       </li>
       <li class="info-item">
-        <span class="info-item__icon">⏰</span>
+        <span class="info-item__icon"></span>
         <div>
           <span class="info-item__label">Heure</span>
           <span class="info-item__value">${evt.heure}</span>
         </div>
       </li>
       <li class="info-item">
-        <span class="info-item__icon">📍</span>
+        <span class="info-item__icon"></span>
         <div>
           <span class="info-item__label">Lieu</span>
           <span class="info-item__value">${evt.lieu}</span>
         </div>
       </li>
       <li class="info-item">
-        <span class="info-item__icon">👤</span>
+        <span class="info-item__icon"></span>
         <div>
           <span class="info-item__label">Organisateur</span>
           <span class="info-item__value">${evt.organisateur}</span>
         </div>
       </li>
       <li class="info-item">
-        <span class="info-item__icon">🏷️</span>
+        <span class="info-item__icon"></span>
         <div>
           <span class="info-item__label">Catégorie</span>
           <span class="info-item__value">${evt.categorie}</span>
@@ -150,78 +150,193 @@ badge.className = `card__badge badge--${evt.categorie}`;
     `;
  
     /* Compteur de places */
-    const pct = Math.round((evt.places_restantes / evt.places_total) * 100);
-    const urgent = evt.places_restantes <= 10;
- 
-    document.getElementById('places-fill').style.width = pct + '%';
-    document.getElementById('places-fill').style.background =
-      urgent ? 'var(--cat-sport)' : 'var(--color-primary)';
- 
-    document.getElementById('places-texte').innerHTML =
-      urgent
-        ? `<span style="color:var(--cat-sport);font-weight:700">⚠️ Plus que ${evt.places_restantes} places sur ${evt.places_total} !</span>`
-        : `<span>${evt.places_restantes} places disponibles sur ${evt.places_total}</span>`;
+const placesKey = 'eduevent_places_' + evt.id;
+const placesActuelles = parseInt(localStorage.getItem(placesKey) || evt.places_restantes, 10);
+const pct = Math.round((placesActuelles / evt.places_total) * 100);
+const urgent = placesActuelles <= 10;
+
+document.getElementById('places-fill').style.width = pct + '%';
+document.getElementById('places-fill').style.background =
+  urgent ? 'var(--cat-sport)' : 'var(--color-primary)';
+
+document.getElementById('places-texte').innerHTML =
+  urgent
+    ? `<span style="color:var(--cat-sport);font-weight:700">⚠️ Plus que ${placesActuelles} places sur ${evt.places_total} !</span>`
+    : `<span>${placesActuelles} places disponibles sur ${evt.places_total}</span>`;
   }
  
   /* ============================================================
      FORMULAIRE D'INSCRIPTION
   ============================================================ */
-  function initInscription(evt) {
-    const form = document.getElementById('inscription-form');
-    const msg  = document.getElementById('ins-message');
- 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
- 
-      const nom      = document.getElementById('ins-nom').value.trim();
-      const email    = document.getElementById('ins-email').value.trim();
-      const faculte  = document.getElementById('ins-faculte').value;
-      window.supprimerCommentaire = function(index) {
-  const stockes = JSON.parse(localStorage.getItem('eduevent_commentaires_' + id) || '[]');
-  stockes.splice(index, 1);
-  localStorage.setItem('eduevent_commentaires_' + id, JSON.stringify(stockes));
-  const tous = [...commentairesDefaut, ...stockes];
-  afficherCommentaires(tous);
-};
- 
-      /* Validation */
-      if (!nom) {
-        afficherMsg(msg, 'Veuillez entrer votre nom complet.', 'error');
-        return;
-      }
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        afficherMsg(msg, 'Veuillez entrer une adresse email valide.', 'error');
-        return;
-      }
-      if (!faculte) {
-        afficherMsg(msg, 'Veuillez sélectionner votre faculté.', 'error');
-        return;
-      }
- 
-      /* Sauvegarder dans localStorage */
-      const inscriptions = JSON.parse(localStorage.getItem('eduevent_inscriptions') || '[]');
-      const dejaInscrit  = inscriptions.find(i => i.eventId === evt.id && i.email === email);
- 
-      if (dejaInscrit) {
-        afficherMsg(msg, '⚠️ Vous êtes déjà inscrit à cet événement.', 'error');
-        return;
-      }
- 
-      inscriptions.push({
-        eventId: evt.id,
-        titre:   evt.titre,
-        date:    evt.date,
-        lieu:    evt.lieu,
-        nom, email, faculte,
-        inscritLe: new Date().toISOString()
-      });
- 
-      localStorage.setItem('eduevent_inscriptions', JSON.stringify(inscriptions));
-      afficherMsg(msg, '✅ Inscription confirmée ! Vous pouvez la retrouver dans votre profil.', 'success');
-      form.reset();
+function initInscription(evt) {
+  const form = document.getElementById('inscription-form');
+  const msg  = document.getElementById('ins-message');
+  const inputTelephone = document.getElementById('ins-telephone');
+
+  /* 1. BLOKE LÈT NAN CHAN TELEFÒN NAN (An tan reyèl) */
+  if (inputTelephone) {
+    inputTelephone.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/[^0-9+\s]/g, '');
     });
   }
+
+  /* 2. JESTYON SUBMIT FÒMILÈ A */
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    /* Verifikasyon si événement pase deja */
+    const dateEvt = new Date(evt.date);
+    const jodi = new Date();
+    jodi.setHours(0, 0, 0, 0);
+    
+    if (dateEvt < jodi) {
+      afficherMsg(msg, ' Cet événement est déjà passé. Les inscriptions sont fermées.', 'error');
+      return;
+    }
+
+    const nom      = document.getElementById('ins-nom').value.trim();
+    const email    = document.getElementById('ins-email').value.trim();
+    const faculte  = document.getElementById('ins-faculte').value;
+    const telephone = inputTelephone ? inputTelephone.value.trim() : '';
+
+    /* Validation */
+    if (!nom || !email || !faculte) {
+      afficherMsg(msg, 'Veuillez remplir tous les champs obligatoires.', 'error');
+      return;
+    }
+
+    /* Sauvegarder dans localStorage */
+    const inscriptions = JSON.parse(localStorage.getItem('eduevent_inscriptions') || '[]');
+    const dejaInscrit  = inscriptions.find(i => i.eventId === evt.id && i.email === email);
+
+    if (dejaInscrit) {
+      afficherMsg(msg, ' Vous êtes déjà inscrit à cet événement.', 'error');
+      return;
+    }
+
+    inscriptions.push({
+      eventId: evt.id,
+      titre:   evt.titre,
+      date:    evt.date,
+      lieu:    evt.lieu,
+      nom, email, faculte, telephone,
+      inscritLe: new Date().toISOString()
+    });
+
+    localStorage.setItem('eduevent_inscriptions', JSON.stringify(inscriptions));
+    afficherMsg(msg, '✅ Inscription confirmée !', 'success');
+
+    /* ============================================================
+       3. JESTYON BOUTON PDF (KORIDJE POU L PA DOUBLE)
+       ============================================================ */
+    // A. Si yon ansyen bouton te la deja, nou efase l nèt pou kraze kach la
+    const ansyenBtn = document.getElementById('btn-pdf-dynamique');
+    if (ansyenBtn) {
+      ansyenBtn.remove();
+    }
+
+    // B. Nou kreye nouvo bouton an ak yon ID fiks
+    const btnPrint = document.createElement('button');
+    btnPrint.id = 'btn-pdf-dynamique';
+    btnPrint.className = 'btn btn--outline';
+    btnPrint.style.marginTop = '1rem';
+    btnPrint.style.width = '100%';
+    btnPrint.style.justifyContent = 'center';
+    btnPrint.textContent = '📄 Télécharger ma confirmation (PDF)';
+    
+    // C. Nou ba li nouvo enfòmasyon yo dirèkteman
+    btnPrint.onclick = () => {
+      const dateFormatee = new Date(evt.date).toLocaleDateString('fr-FR', {
+        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+      });
+
+      const contenu = `
+        <html>
+        <head>
+          <title>Confirmation — EduEvent</title>
+          <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { font-family: Arial, sans-serif; padding: 3rem; color: #1E293B; }
+            .header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; border-bottom: 3px solid #1565C0; padding-bottom: 1rem; }
+            .logo { font-size: 1.8rem; font-weight: bold; color: #1565C0; }
+            .logo span { color: #F5C500; }
+            .titre { font-size: 1.4rem; font-weight: bold; color: #1565C0; margin-bottom: 1.5rem; }
+            .section { background: #F8FAFF; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; border-left: 4px solid #1565C0; }
+            .section h3 { font-size: 0.8rem; text-transform: uppercase; color: #64748B; margin-bottom: 0.8rem; letter-spacing: 0.1em; }
+            .info { display: flex; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.95rem; }
+            .info strong { min-width: 120px; color: #1565C0; }
+            .badge { display: inline-block; background: #1565C0; color: #fff; padding: 0.3rem 1rem; border-radius: 999px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 1rem; }
+            .footer { margin-top: 2rem; text-align: center; font-size: 0.8rem; color: #94A3B8; border-top: 1px solid #E2E8F0; padding-top: 1rem; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <div class="logo">🎓 Edu<span>Event</span></div>
+            <div>
+              <div style="font-size:0.85rem;color:#64748B;">Campus Henry Christophe — UEH</div>
+              <div style="font-size:0.85rem;color:#64748B;">Faculté des Sciences et de Génie</div>
+            </div>
+          </div>
+
+          <p class="titre">✅ Confirmation d'inscription</p>
+          <span class="badge">${evt.categorie}</span>
+
+          <div class="section">
+            <h3>Détails de l'événement</h3>
+            <div class="info"><strong>Événement :</strong> <span>${evt.titre}</span></div>
+            <div class="info"><strong>Date :</strong> <span>${dateFormatee}</span></div>
+            <div class="info"><strong>Heure :</strong> <span>${evt.heure}</span></div>
+            <div class="info"><strong>Lieu :</strong> <span>${evt.lieu}</span></div>
+            <div class="info"><strong>Organisateur :</strong> <span>${evt.organisateur}</span></div>
+          </div>
+
+          <div class="section">
+            <h3>Informations du participant</h3>
+            <div class="info"><strong>Nom :</strong> <span>${nom}</span></div>
+            <div class="info"><strong>Email :</strong> <span>${email}</span></div>
+            <div class="info"><strong>Faculté :</strong> <span>${faculte}</span></div>
+            <div class="info"><strong>Téléphone :</strong> <span>${telephone || 'Non renseigné'}</span></div>
+          </div>
+
+          <div class="footer">
+            EduEvent — Campus Henry Christophe de Limonade · UEH · 2026<br/>
+            Ce document confirme votre inscription à l'événement ci-dessus.
+          </div>
+        </body>
+        </html>
+      `;
+
+      const fenetre = window.open('', '_blank');
+      fenetre.document.write(contenu);
+      fenetre.document.close();
+      fenetre.setTimeout(() => {
+        fenetre.print();
+        fenetre.close();
+      }, 500);
+    };
+
+    msg.parentElement.appendChild(btnPrint);
+    form.reset(); // <--- MWEN REMETE LIY LI VID KÒMIFO A ISIT LA POU PA GEN CACHE !
+
+    /* ============================================================
+       4. DIMINYE PLACES RESTANTES
+       ============================================================ */
+    const placesKey = 'eduevent_places_' + evt.id;
+    const placesActuelles = parseInt(localStorage.getItem(placesKey) || evt.places_restantes, 10);
+    if (placesActuelles > 0) {
+      localStorage.setItem(placesKey, placesActuelles - 1);
+      const nouvellesPlaces = placesActuelles - 1;
+      const urgent = nouvellesPlaces <= 10;
+      document.getElementById('places-texte').innerHTML = urgent
+        ? `<span style="color:var(--cat-sport);font-weight:700">⚠️ Plus que ${nouvellesPlaces} places sur ${evt.places_total} !</span>`
+        : `<span>${nouvellesPlaces} places disponibles sur ${evt.places_total}</span>`;
+      const pct = Math.round((nouvellesPlaces / evt.places_total) * 100);
+      document.getElementById('places-fill').style.width = pct + '%';
+    }
+  });
+}
+
+
  
   /* ============================================================
      COMMENTAIRES
@@ -269,7 +384,7 @@ badge.className = `card__badge badge--${evt.categorie}`;
  
       const tous = [...commentairesDefaut, ...stockes];
       afficherCommentaires(tous);
-      afficherMsg(msg, '✅ Commentaire publié avec succès !', 'success');
+      afficherMsg(msg, ' Commentaire publié avec succès !', 'success');
       form.reset();
       noteSelectionnee = 0;
       document.querySelectorAll('.etoile').forEach(e => e.classList.remove('active'));
@@ -382,6 +497,22 @@ window.supprimerCommentaire = function(indexStocke) {
     el.className = 'form-message ' + type;
     setTimeout(() => { el.textContent = ''; el.className = 'form-message'; }, 5000);
   }
-  
+  /* ===== DARK MODE ===== */
+(function initDarkMode() {
+  const btn = document.getElementById('btn-darkmode');
+  if (!btn) return;
+
+  /* Restore preference */
+  if (localStorage.getItem('eduevent_darkmode') === 'true') {
+    document.body.classList.add('dark');
+    btn.textContent = '☀️';
+  }
+
+  btn.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark');
+    btn.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('eduevent_darkmode', isDark);
+  });
+})(); 
  
 })();
