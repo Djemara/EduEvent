@@ -17,7 +17,7 @@
       
       <!-- Logo -->
       <a href="index.html" class="header__logo">
-        <img src="images/logo-chcl (2).jpg" alt="UEH-CHCL" class="logo__img">
+        <img src="images/logo-chcl.png" alt="UEH-CHCL" class="logo__img">
         <span class="logo__text">Edu<strong>Event</strong></span>
       </a>
 
@@ -33,13 +33,12 @@
 
       <!-- Connexion & Menu Burger -->
       <div class="header__actions">
-        <a href="profil.html" class="btn btn--outline">Connexion</a>
-        
-        <!-- Le bouton hamburger est maintenant contrôlable par le fichier responsive.css -->
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+  <button class="btn-darkmode" id="btn-darkmode" aria-label="Mode sombre">mode sombre</button>
+  <a href="profil.html" class="btn btn--outline">Connexion</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</div>
 
     </div>
   </header>
@@ -85,6 +84,7 @@
                 <option value="atelier">Ateliers</option>
                 <option value="sport">Sports</option>
                 <option value="culture">Culture</option>
+                <option value="soutenance">Soutenances</option>
               </select>
               <span class="select-arrow">▾</span>
             </div>
@@ -159,7 +159,7 @@
     <div class="container footer__inner">
       <div class="footer__brand">
         <a href="index.html" class="header__logo">
-        <img src="images/logo-chcl (2).jpg" alt="UEH-CHCL" class="logo__img">
+        <img src="images/logo-chcl.png" alt="UEH-CHCL" class="logo__img">
         <span class="logo__text">Edu<strong>Event</strong></span>
       </a>
         <p class="footer__tagline">La plateforme des événements du Campus Henry Christophe</p>
@@ -180,6 +180,7 @@
           <li><a href="evenements.html?cat=atelier">Ateliers</a></li>
           <li><a href="evenements.html?cat=sport">Sports</a></li>
           <li><a href="evenements.html?cat=culture">Culture</a></li>
+          <li><a href="evenements.html?cat=soutenace">Soutenance</a></li>
         </ul>
       </div>
       <div class="footer__social">
@@ -191,12 +192,24 @@
         </div>
       </div>
     </div>
+    <div class="footer-accessibility" style="margin-top: 1rem; display: flex; gap: 8px; justify-content: center; align-items: center; padding: 0.5rem 0;">
+  <span style="font-size: 0.8rem; font-weight: 600; color: var(--color-text-muted);">Taille du texte :</span>
+  <button type="button" class="btn-size" data-size="small" style="padding: 4px 10px; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.75rem; cursor: pointer; background: #fff; transition: all var(--transition);">A-</button>
+  <button type="button" class="btn-size active" data-size="medium" style="padding: 4px 10px; border: 1px solid var(--color-primary); border-radius: 4px; font-size: 0.85rem; cursor: pointer; background: var(--color-primary); color: #fff; transition: all var(--transition);">A</button>
+  <button type="button" class="btn-size" data-size="large" style="padding: 4px 10px; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.95rem; cursor: pointer; background: #fff; transition: all var(--transition);">A+</button>
+</div>
     <div class="footer__bottom">
       <div class="container">
         <p>© 2026 EduEvent — Université d'État d'Haïti · FSG · Campus Henry Christophe à Limonade</p>
       </div>
+      <!-- ===== BOUTON RETOUR EN HAUT (SCROLL TO TOP) ===== -->
+<button type="button" id="scroll-top-btn" class="btn-scroll-top" title="Retour en haut">
+  ↑
+</button>
+
     </div>
   </footer>
+  
 
   <script src="js/main.js"></script>
   <script src="js/evenements.js"></script>
