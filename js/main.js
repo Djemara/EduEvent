@@ -54,7 +54,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   });
 })();
 /* ============================================================
-   1.5. HERO SLIDER — Chanjman otomatik pou 5 imaj yo
+   1.5. HERO SLIDER 
    ============================================================ */
 (function initHeroSlider() {
   const slides = $$('.hero-slide');
@@ -136,14 +136,14 @@ function creerCarteEvenement(evt) {
     <div class="card__body">
       <h3 class="card__title">${evt.titre}</h3>
       <div class="card__meta">
-        <span>📅 ${dateFormatee}</span>
-        <span>⏰ ${evt.heure}</span>
-        <span>📍 ${evt.lieu}</span>
+        <span> ${dateFormatee}</span>
+        <span> ${evt.heure}</span>
+        <span> ${evt.lieu}</span>
       </div>
       <p class="card__places ${urgent ? 'urgent' : ''}">
         ${urgent
-          ? '⚠️ Plus que ' + evt.places_restantes + ' places !'
-          : '✅ ' + evt.places_restantes + ' places disponibles'}
+          ? ' Plus que ' + evt.places_restantes + ' places !'
+          : ' ' + evt.places_restantes + ' places disponibles'}
       </p>
     </div>
     <div class="card__footer">
@@ -227,12 +227,29 @@ document.addEventListener('DOMContentLoaded', observerReveal);
     }
 
     // Simulation d'envoi (pas de backend)
-    msg.textContent = '✅ Inscription confirmée ! Vous recevrez nos prochains événements.';
+    msg.textContent = ' Inscription confirmée ! Vous recevrez nos prochains événements.';
     msg.className = 'form-message success';
     emailInput.value = '';
 
     setTimeout(() => { msg.textContent = ''; }, 5000);
   });
+   /* ===== DARK MODE ===== */
+(function initDarkMode() {
+  const btn = document.getElementById('btn-darkmode');
+  if (!btn) return;
+
+  /* Restore preference */
+  if (localStorage.getItem('eduevent_darkmode') === 'true') {
+    document.body.classList.add('dark');
+    btn.textContent = '☀️';
+  }
+
+  btn.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark');
+    btn.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('eduevent_darkmode', isDark);
+  });
+})();
 })();
 /* ============================================================
    a-propos.js — EduEvent · Contact & FAQ Accordéon
@@ -287,7 +304,7 @@ document.addEventListener('DOMContentLoaded', observerReveal);
     });
     localStorage.setItem('eduevent_messages_contact', JSON.stringify(messages));
 
-    afficherFeedback('✅ Message envoyé avec succès ! Nous vous répondrons rapidement.', 'success');
+    afficherFeedback(' Message envoyé avec succès ! Nous vous répondrons rapidement.', 'success');
     form.reset();
   });
 
@@ -328,6 +345,99 @@ document.addEventListener('DOMContentLoaded', observerReveal);
       }
     });
   });
-  
+  /* ===== DARK MODE ===== */
+(function initDarkMode() {
+  const btn = document.getElementById('btn-darkmode');
+  if (!btn) return;
+
+  /* Restore preference */
+  if (localStorage.getItem('eduevent_darkmode') === 'true') {
+    document.body.classList.add('dark');
+    btn.textContent = '☀️';
+  }
+
+  btn.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark');
+    btn.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('eduevent_darkmode', isDark);
+  });
+})();
+
 
 })();
+/* ============================================================
+   ACCESSIBILITÉ : GESTION DE LA TAILLE DES POLICES (SÉCURISÉ)
+   ============================================================ */
+function initAccessibilitySize() {
+  const sizeButtons = document.querySelectorAll(".btn-size");
+  const htmlElement = document.documentElement;
+
+  // Sécurité : si les boutons du footer ne sont pas sur cette page, on s'arrête
+  if (sizeButtons.length === 0) return;
+
+  function appliquerTaille(size) {
+    htmlElement.classList.remove("size-small", "size-large");
+    if (size === "small") htmlElement.classList.add("size-small");
+    if (size === "large") htmlElement.classList.add("size-large");
+
+    sizeButtons.forEach(btn => {
+      if (btn.getAttribute("data-size") === size) {
+        btn.classList.add("active");
+        btn.style.background = "var(--color-primary)";
+        btn.style.color = "#fff";
+        btn.style.borderColor = "var(--color-primary)";
+      } else {
+        btn.classList.remove("active");
+        btn.style.background = "#fff";
+        btn.style.color = "inherit";
+        btn.style.borderColor = "var(--color-border)";
+      }
+    });
+  }
+
+  // 1. Lecture immédiate du localStorage
+  const savedSize = localStorage.getItem("eduevent_font_size") || "medium";
+  appliquerTaille(savedSize);
+
+  // 2. Écoute des clics sur les boutons du footer
+  sizeButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+      const size = e.currentTarget.getAttribute("data-size");
+      localStorage.setItem("eduevent_font_size", size);
+      appliquerTaille(size);
+    });
+  });
+}
+
+/* 🧠 L'ASTUCE ANTI-BUG : On vérifie si le DOM est déjà chargé */
+if (document.readyState !== "loading") {
+  // Le DOM est déjà prêt, on lance la fonction tout de suite !
+  initAccessibilitySize();
+} else {
+  // Le DOM charge encore, on attend l'événement normalement
+  document.addEventListener("DOMContentLoaded", initAccessibilitySize);
+}
+  /* ============================================================
+     FONCTIONNALITÉ : RETOUR EN HAUT DE PAGE (SCROLL TO TOP)
+     ============================================================ */
+  const scrollTopBtn = document.getElementById("scroll-top-btn");
+
+  if (scrollTopBtn) {
+    // 1. Écouter le défilement de la page pour afficher/cacher le bouton
+    window.addEventListener("scroll", () => {
+      // Le bouton apparaît si l'utilisateur descend de plus de 300 pixels
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add("visible");
+      } else {
+        scrollTopBtn.classList.remove("visible");
+      }
+    });
+
+    // 2. Remonter en haut de page en douceur lors du clic
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth" // Fait remonter la page de manière fluide et douce
+      });
+    });
+  }
