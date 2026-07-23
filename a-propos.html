@@ -17,11 +17,10 @@
       
       <!-- Logo -->
       <a href="index.html" class="header__logo">
-        <img src="images/logo-chcl (2).jpg" alt="UEH-CHCL" class="logo__img">
+        <img src="images/logo-chcl.png" alt="UEH-CHCL" class="logo__img">
         <span class="logo__text">Edu<strong>Event</strong></span>
       </a>
 
-      <!-- Liens de navigation (Nettoyés des styles en ligne importants) -->
       <nav class="nav" id="nav">
         <ul class="nav__list">
           <li><a href="index.html" class="nav__link active">Accueil</a></li>
@@ -33,9 +32,9 @@
 
       <!-- Connexion & Menu Burger -->
       <div class="header__actions">
+        <button class="btn-darkmode" id="btn-darkmode" aria-label="Mode sombre" title="Mode sombre">mode sombre</button>
         <a href="profil.html" class="btn btn--outline">Connexion</a>
         
-        <!-- Le bouton hamburger est maintenant contrôlable par le fichier responsive.css -->
         <button class="hamburger" id="hamburger" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -104,9 +103,14 @@
         <div class="equipe__grid">
 
           <div class="membre-card">
-            <div class="membre-card__photo">👨🏾‍💻</div>
+          <div class="membre-card__photo" style="width: 300px !important; height: 300px !important; border-radius: 50% !important; overflow: hidden !important; border: 3px solid var(--color-primary); background: var(--color-bg); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem;">
+  <img src="images/amicy.jpg" alt="amicy" style="width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center top !important;" />
+</div>
+
+
+
             <h3 class="membre-card__nom">AMICY Djemara</h3>
-            <p class="membre-card__role">Développeur Full-Stack</p>
+            <p class="membre-card__role">Développeuse Full-Stack</p>
             <p class="membre-card__desc">
               Étudiante L3 Informatique à la FSG, passionnée par le développement web et
               les architectures logicielles.
@@ -118,11 +122,15 @@
           </div>
 
           <div class="membre-card">
-            <div class="membre-card__photo">👩🏾‍💻</div>
-            <h3 class="membre-card__nom">Pierre Rosener</h3>
+           <div class="membre-card__photo" style="width: 300px !important; height: 300px !important; border-radius: 50% !important; overflow: hidden !important; border: 3px solid var(--color-primary); background: var(--color-bg); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem;">
+  <img src="images/pierre.jpg" alt="pierre" style="width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center top !important;" />
+</div>
+
+
+            <h3 class="membre-card__nom">PIERRE Rosener</h3>
             <p class="membre-card__role">Développeur Front-End</p>
             <p class="membre-card__desc">
-              Étudiant(e) L3 Informatique à la FSG, spécialisé(e) dans le design
+              Étudiant L3 Informatique à la FSG, spécialisé dans le design
               d'interfaces et l'expérience utilisateur.
             </p>
             <div class="membre-card__socials">
@@ -188,14 +196,14 @@
           <div class="map-simule">
             <div class="map-simule__grid"></div>
             <div class="map-pin">
-              <span class="map-pin__icon">📍</span>
+              <span class="map-pin__icon"></span>
               <span class="map-pin__label">Campus Henry Christophe</span>
             </div>
           </div>
           <div class="map-info">
-            <p><strong>📍 Adresse</strong><br />Campus Henry Christophe, Limonade, Haïti</p>
-            <p><strong>📧 Email</strong><br />contact@eduevent-chcl.ht</p>
-            <p><strong>📞 Téléphone</strong><br />+509 0000 0000</p>
+            <p><strong> Adresse</strong><br />Campus Henry Christophe, Limonade, Haïti</p>
+            <p><strong> Email</strong><br />contact@eduevent-chcl.ht</p>
+            <p><strong> Téléphone</strong><br />+509 0000 0000</p>
           </div>
         </div>
 
@@ -280,7 +288,7 @@
     <div class="container footer__inner">
       <div class="footer__brand">
         <a href="index.html" class="header__logo">
-        <img src="images/logo-chcl (2).jpg" alt="UEH-CHCL" class="logo__img">
+        <img src="images/logo-chcl.png" alt="UEH-CHCL" class="logo__img">
         <span class="logo__text">Edu<strong>Event</strong></span>
       </a>
         <p class="footer__tagline">La plateforme des événements du Campus Henry Christophe</p>
@@ -312,12 +320,25 @@
         </div>
       </div>
     </div>
+    <div class="footer-accessibility" style="margin-top: 1rem; display: flex; gap: 8px; justify-content: center; align-items: center; padding: 0.5rem 0;">
+  <span style="font-size: 0.8rem; font-weight: 600; color: var(--color-text-muted);">Taille du texte :</span>
+  <button type="button" class="btn-size" data-size="small" style="padding: 4px 10px; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.75rem; cursor: pointer; background: #fff; transition: all var(--transition);">A-</button>
+  <button type="button" class="btn-size active" data-size="medium" style="padding: 4px 10px; border: 1px solid var(--color-primary); border-radius: 4px; font-size: 0.85rem; cursor: pointer; background: var(--color-primary); color: #fff; transition: all var(--transition);">A</button>
+  <button type="button" class="btn-size" data-size="large" style="padding: 4px 10px; border: 1px solid var(--color-border); border-radius: 4px; font-size: 0.95rem; cursor: pointer; background: #fff; transition: all var(--transition);">A+</button>
+</div>
     <div class="footer__bottom">
       <div class="container">
         <p>© 2026 EduEvent — Université d'État d'Haïti · FSG · Campus Henry Christophe à Limonade</p>
       </div>
+      <!-- ===== BOUTON RETOUR EN HAUT (SCROLL TO TOP) ===== -->
+<button type="button" id="scroll-top-btn" class="btn-scroll-top" title="Retour en haut">
+  ↑
+</button>
+
     </div>
   </footer>
+
+
 
   <script src="js/main.js"></script>
 </body>
