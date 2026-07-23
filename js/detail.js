@@ -244,45 +244,10 @@ function initInscription(evt) {
     btnPrint.style.justifyContent = 'center';
     btnPrint.textContent = '📄 Télécharger ma confirmation (PDF)';
     
-    // C. Nou ba li nouvo enfòmasyon yo dirèkteman
-        // ... (Tout votre code HTML existant dans la variable 'contenu' reste identique)
-
-    /* ============================================================
-       CORRECTION : COMPATIBILITÉ MOBILE POUR L'IMPRESSION / REÇU
-       ============================================================ */
-    // 1. Détection si l'utilisateur est sur un appareil mobile
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-    if (isMobile) {
-      // SOLUTION MOBILE : On ouvre le contenu directement dans l'onglet actuel pour que le téléphone puisse le gérer
-      const fenetreMobile = window.open('', '_self');
-      fenetreMobile.document.write(contenu);
-      fenetreMobile.document.close();
-      
-      // On laisse un petit bouton de retour ou on invite l'utilisateur à faire une capture d'écran / imprimer via les options du navigateur
-      const btnRetourMobile = fenetreMobile.document.createElement('button');
-      btnRetourMobile.textContent = "← Retour à EduEvent";
-      btnRetourMobile.style.cssText = "position:fixed;bottom:20px;left:50%;transform:translateX(-50%);padding:10px 20px;background:#1565C0;color:#fff;border:none;border-radius:6px;font-weight:bold;z-index:9999;";
-      btnRetourMobile.onclick = () => { window.location.reload(); };
-      fenetreMobile.document.body.appendChild(btnRetourMobile);
-
-      // Lance l'impression native si le navigateur mobile le supporte
-      setTimeout(() => {
-        if (typeof fenetreMobile.print === 'function') {
-          fenetreMobile.print();
-        }
-      }, 500);
-
-    } else {
-      // SOLUTION ORDINATEUR (Votre code d'origine qui fonctionne déjà parfaitement)
-      const fenetre = window.open('', '_blank');
-      fenetre.document.write(contenu);
-      fenetre.document.close();
-      fenetre.setTimeout(() => {
-        fenetre.print();
-        fenetre.close();
-      }, 500);
-    }
+   btnPrint.onclick = () => {
+      const dateFormatee = new Date(evt.date).toLocaleDateString('fr-FR', {
+        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+      });
 
 
       const contenu = `
