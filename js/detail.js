@@ -229,26 +229,29 @@ function initInscription(evt) {
     /* ============================================================
        3. JESTYON BOUTON PDF (KORIDJE POU L PA DOUBLE)
        ============================================================ */
-    // A. Si yon ansyen bouton te la deja, nou efase l nèt pou kraze kach la
-    const ansyenBtn = document.getElementById('btn-pdf-dynamique');
-    if (ansyenBtn) {
-      ansyenBtn.remove();
+    /* ============================================================
+       3. JESTYON BOUTON PDF (KÒD SENP KI PA GATE PAJ LA)
+       ============================================================ */
+    let btnPrint = document.getElementById('btn-pdf-dynamique');
+    
+    if (btnPrint) {
+      btnPrint.onclick = null;
+    } else {
+      btnPrint = document.createElement('button');
+      btnPrint.id = 'btn-pdf-dynamique';
+      btnPrint.className = 'btn btn--outline';
+      btnPrint.style.marginTop = '1rem';
+      btnPrint.style.width = '100%';
+      btnPrint.style.justifyContent = 'center';
+      msg.parentElement.appendChild(btnPrint);
     }
 
-    // B. Nou kreye nouvo bouton an ak yon ID fiks
-    const btnPrint = document.createElement('button');
-    btnPrint.id = 'btn-pdf-dynamique';
-    btnPrint.className = 'btn btn--outline';
-    btnPrint.style.marginTop = '1rem';
-    btnPrint.style.width = '100%';
-    btnPrint.style.justifyContent = 'center';
     btnPrint.textContent = '📄 Télécharger ma confirmation (PDF)';
-    
-   btnPrint.onclick = () => {
+
+    btnPrint.onclick = () => {
       const dateFormatee = new Date(evt.date).toLocaleDateString('fr-FR', {
         weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
-      });
-
+  });
 
       const contenu = `
         <html>
@@ -306,17 +309,22 @@ function initInscription(evt) {
         </html>
       `;
 
+      // NOUVÈL METÒD SÈN : Si se sou telefòn, nou pèmèt li ouvè onglet a nòmal san l pa detwi paj aktyèl la
       const fenetre = window.open('', '_blank');
-      fenetre.document.write(contenu);
-      fenetre.document.close();
-      fenetre.setTimeout(() => {
-        fenetre.print();
-        fenetre.close();
-      }, 500);
+      if (fenetre) {
+        fenetre.document.write(contenu);
+        fenetre.document.close();
+        fenetre.setTimeout(() => {
+          fenetre.print();
+        }, 500);
+      } else {
+        // Sekirite si telefòn lan bloke pop-up la nèt : nou avèti l
+        alert("Veuillez autoriser les fenêtres pop-up sur votre téléphone pour télécharger le PDF.");
+      }
     };
 
-    msg.parentElement.appendChild(btnPrint);
-    form.reset(); // <--- MWEN REMETE LIY LI VID KÒMIFO A ISIT LA POU PA GEN CACHE !
+    form.reset();
+
 
     /* ============================================================
        4. DIMINYE PLACES RESTANTES
