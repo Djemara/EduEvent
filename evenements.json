@@ -60,9 +60,9 @@
   
     {
   "id": 4,
-  "titre": "Bal Masqué Universitaire — Nuit de Mystère et de Culture",
+  "titre": "Bal Masqué Universitaire  Nuit de Mystère et de Culture",
   "categorie": "culture",
-  "description": "Venez célébrer la richesse de la culture haïtienne lors d'un grand bal masqué ! Chaque participant devra arriver avec un costume et un masque — personne ne saura qui vous êtes jusqu'à minuit ! Au programme : performance live du groupe musical Kreyòl la, danses traditionnelles haïtiennes, décorations féeriques et prix pour le plus beau costume de la soirée. Une nuit inoubliable pour toute la communauté universitaire du Campus Henry Christophe.",
+  "description": "Venez célébrer la richesse de la culture haïtienne lors d'un grand bal masqué ! Chaque participant devra arriver avec un costume et un masque , personne ne saura qui vous êtes jusqu'à minuit ! Au programme : performance live du groupe musical Kreyòl la, danses traditionnelles haïtiennes, décorations féeriques et prix pour le plus beau costume de la soirée. Une nuit inoubliable pour toute la communauté universitaire du Campus Henry Christophe.",
   "date": "2026-07-23",
   "heure": "19:00",
   "lieu": " Campus Henry Christophe",
@@ -112,25 +112,21 @@
       "Merise"
     ]
   },
-  {
-    "id": 7,
-    "titre": "Journée Portes Ouvertes FSG",
-    "categorie": "culture",
-    "description": "Découvrez les programmes et laboratoires de la Faculté des Sciences et de Génie. Rencontres avec les professeurs et étudiants actuels.",
-    "date": "2026-08-15",
-    "heure": "09:00",
-    "lieu": "Faculté des Sciences et de Génie, Limonade",
-    "organisateur": "Administration FSG",
-    "places_total": 1000,
-    "places_restantes": 750,
-    "image": "images/events/portes-ouvertes.jpg",
-    "vedette": false,
-    "tags": [
-      "FSG",
-      "orientation",
-      "campus"
-    ]
-  },
+ {
+  "id": 7,
+  "titre": "Médi-Challenge — Concours Inter-Universitaire de Médecine",
+  "categorie": "culture",
+  "description": "Le Médi-Challenge est un concours médical palpitant organisé par les étudiants en médecine du Campus Henry Christophe. Des équipes s'affrontent dans des épreuves de connaissances médicales : anatomie, physiologie, pathologie, pharmacologie et cas cliniques. Un événement qui stimule l'excellence académique, renforce la solidarité entre futurs médecins et met en valeur le talent des étudiants en sciences de la santé d'Haïti. Venez supporter votre équipe et découvrir le monde fascinant de la médecine !",
+  "date": "2026-08-28",
+  "heure": "09:00",
+  "lieu": "Auditorium, Campus Limonade",
+  "organisateur": "Association des Étudiants en Médecine — UEH",
+  "places_total": 300,
+  "places_restantes": 210,
+  "image": "images/events/medi-challenge.png",
+  "vedette": true,
+  "tags": ["médecine", "concours", "Médi-Challenge", "santé"]
+},
   {
     "id": 8,
     "titre": "Hackathon 24h — Solutions pour Haïti",
@@ -157,7 +153,7 @@
     "description": "Tournoi de basketball opposant les équipes des différents campus de l'UEH. Ambiance garantie et prix pour les trois premières équipes.",
     "date": "2026-08-22",
     "heure": "10:00",
-    "lieu": "Gymnase du Campus Henry Christophe",
+    "lieu": " Campus Henry Christophe",
     "organisateur": "Association Sportive UEH",
     "places_total": 200,
     "places_restantes": 145,
@@ -176,7 +172,7 @@
     "description": "Comment les technologies numériques peuvent-elles contribuer au développement durable en Haïti ? Débat avec des experts locaux et internationaux.",
     "date": "2026-08-25",
     "heure": "09:30",
-    "lieu": "Amphithéâtre Principal, FSG",
+    "lieu": "Campus Henry Christophe",
     "organisateur": "Département Sciences - UEH",
     "places_total": 150,
     "places_restantes": 98,
@@ -273,7 +269,7 @@
     "description": "Course à pied de 10 km autour du Campus Henry Christophe. Ouvert à tous les étudiants, enseignants et personnels. Prix pour les 10 premiers.",
     "date": "2026-09-12",
     "heure": "06:30",
-    "lieu": "Départ : Entrée principale, Campus Limonade",
+    "lieu": "Départ :  Campus Limonade",
     "organisateur": "Association Sportive UEH",
     "places_total": 150,
     "places_restantes": 87,
@@ -285,4 +281,20 @@
       "marathon"
     ]
   }
+  ,
+{
+  "id": 16,
+  "titre": "Soutenance de Thèses en Médecine  Promotion 2026",
+  "categorie": "soutenance",
+  "description": "Cérémonie de soutenance des thèses de fin d'études des étudiants en médecine de la promotion 2026. Venez assister et encourager ces futurs médecins haïtiens qui présentent leurs recherches devant un jury de professeurs spécialisés. Un moment solennel et historique pour toute la communauté universitaire.",
+  "date": "2026-07-15",
+  "heure": "09:00",
+  "lieu": "Amphithéâtre Principal, FSG — Campus Henry Christophe",
+  "organisateur": "Faculté de Médecine — UEH",
+  "places_total": 200,
+  "places_restantes": 120,
+  "image": "images/events/soutenance.jpg",
+  "vedette": false,
+  "tags": ["soutenance", "médecine", "thèse", "promotion 2026"]
+}
 ]
