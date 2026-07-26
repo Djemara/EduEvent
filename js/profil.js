@@ -135,7 +135,7 @@
     localStorage.setItem('eduevent_comptes', JSON.stringify(comptes));
     localStorage.setItem('eduevent_utilisateur', JSON.stringify(nouveauCompte));
  
-    afficherMsg(msg, ' Compte créé avec succès !', 'success');
+    afficherMsg(msg, ' ✅Compte créé avec succès !', 'success');
     setTimeout(() => afficherProfil(nouveauCompte), 800);
   });
  
@@ -210,8 +210,8 @@ const profilPass = document.getElementById('profil-password');
           <div class="inscription-card__info">
             <h4 class="inscription-card__titre">${ins.titre}</h4>
             <div class="inscription-card__meta">
-              <span> ${dateFormatee}</span>
-              <span> ${ins.lieu}</span>
+              <span>📅 ${dateFormatee}</span>
+              <span>📍 ${ins.lieu}</span>
             </div>
           </div>
           <button
