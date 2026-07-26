@@ -358,10 +358,61 @@ btnPrint.onclick = (e) => {
     `;
 
     document.body.appendChild(bwatKonfimasyon);
+//confirmation
+const contenuHTML = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmation — EduEvent</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; color: #1E293B; }
+    .logo { font-size: 1.5rem; font-weight: bold; color: #1565C0; margin-bottom: 1rem; }
+    .logo span { color: #F5C500; }
+    h1 { color: #1565C0; font-size: 1.3rem; margin-bottom: 1rem; }
+    .badge { display: inline-block; background: #1565C0; color: #fff; padding: 0.3rem 1rem; border-radius: 999px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 1rem; }
+    .section { background: #F8FAFF; border-radius: 8px; padding: 1.2rem; margin-bottom: 1rem; border-left: 4px solid #1565C0; }
+    .section h3 { font-size: 0.75rem; text-transform: uppercase; color: #64748B; margin-bottom: 0.8rem; }
+    .info { margin-bottom: 0.5rem; font-size: 0.9rem; }
+    .info strong { color: #1565C0; }
+    .footer { margin-top: 2rem; text-align: center; font-size: 0.75rem; color: #94A3B8; border-top: 1px solid #E2E8F0; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="logo">🎓 Edu<span>Event</span></div>
+  <h1>✅ Confirmation d'inscription</h1>
+  <span class="badge">${evt.categorie}</span>
+  <div class="section">
+    <h3>Détails de l'événement</h3>
+    <div class="info"><strong>Événement :</strong> ${evt.titre}</div>
+    <div class="info"><strong>Date :</strong> ${dateFormatee}</div>
+    <div class="info"><strong>Heure :</strong> ${evt.heure}</div>
+    <div class="info"><strong>Lieu :</strong> ${evt.lieu}</div>
+    <div class="info"><strong>Organisateur :</strong> ${evt.organisateur}</div>
+  </div>
+  <div class="section">
+    <h3>Informations du participant</h3>
+    <div class="info"><strong>Nom :</strong> ${nomSove}</div>
+    <div class="info"><strong>Email :</strong> ${emailSove}</div>
+    <div class="info"><strong>Faculté :</strong> ${faculteSove}</div>
+    <div class="info"><strong>Téléphone :</strong> ${telSove || 'Non renseigné'}</div>
+  </div>
+  <div class="footer">
+    EduEvent — Campus Henry Christophe de Limonade · UEH · 2026<br/>
+    Ce document confirme votre inscription à l'événement ci-dessus.
+  </div>
+</body>
+</html>`;
 
-    // 3. RELE METÒD ENPRESYON AN
-    // Kounye a CSS a pral bloke tout paj la otomatikman, se div sa a sèlman telefòn nan ap wè
-    window.print();
+const blob = new Blob([contenuHTML], { type: 'text/html' });
+const url = URL.createObjectURL(blob);
+const lyen = document.createElement('a');
+lyen.href = url;
+lyen.download = 'confirmation-eduevent.html';
+document.body.appendChild(lyen);
+lyen.click();
+document.body.removeChild(lyen);
+setTimeout(() => URL.revokeObjectURL(url), 1000);
 
     // 4. NETWAYE FÒM NAN EPI RETIRE BOUTON AN
     setTimeout(() => {
