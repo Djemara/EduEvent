@@ -227,41 +227,45 @@ function initInscription(evt) {
     afficherMsg(msg, '✅ Inscription confirmée !', 'success');
 
         /* ============================================================
-       3. JESTYON BOUTON PDF (DONE BLOKE POU MICROSOFT EDGE)
-       ============================================================ */
-  
-    const nomSove = nom;
-    const emailSove = email;
-    const faculteSove = faculte;
-    const telSove = telephone;
+   3. JESTYON BOUTON PDF (DONE BLOKE POU MICROSOFT EDGE)
+============================================================ */
+const nomSove = nom;
+const emailSove = email;
+const faculteSove = faculte;
+const telSove = telephone;
 
-  
-    const ansyenBtn = document.getElementById('btn-pdf-dynamique');
-    if (ansyenBtn) {
-      ansyenBtn.remove();
-    }
+const ansyenBtn = document.getElementById('btn-pdf-dynamique');
+if (ansyenBtn) {
+    ansyenBtn.remove();
+}
 
-    
-    const btnPrint = document.createElement('button');
-    btnPrint.id = 'btn-pdf-dynamique';
-    btnPrint.className = 'btn btn--outline';
-    btnPrint.style.marginTop = '1rem';
-    btnPrint.style.width = '100%';
-    btnPrint.style.justifyContent = 'center';
-    btnPrint.textContent = '📄 Télécharger ma confirmation (PDF)';
-    
-    btnPrint.onclick = () => {
-      const dateFormatee = new Date(evt.date).toLocaleDateString('fr-FR', {
-        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
-      });
+const btnPrint = document.createElement('button');
+btnPrint.id = 'btn-pdf-dynamique';
+btnPrint.className = 'btn btn--outline';
+btnPrint.style.marginTop = '1rem';
+btnPrint.style.width = '100%';
+btnPrint.style.justifyContent = 'center';
+btnPrint.textContent = '📄 Télécharger ma confirmation (PDF)';
 
-      const contenu = `
-        <html>
-        <head>
-          <title>Confirmation — EduEvent</title>
-          <style>
+btnPrint.onclick = (e) => {
+    // Bloke fòm nan pou l pa resoumèt epi bay erè "déjà inscrit"
+    e.preventDefault(); 
+    e.stopPropagation();
+
+    const dateFormatee = new Date(evt.date).toLocaleDateString('fr-FR', { 
+        weekday: 'long', 
+        day: 'numeric', 
+        month: 'long', 
+        year: 'numeric' 
+    });
+
+    const contenu = `
+    <html>
+    <head>
+        <title>Confirmation — EduEvent</title>
+        <style>
             * { margin: 0; padding: 0; box-sizing: border-box; }
-            body { font-family: Arial, sans-serif; padding: 3rem; color: #1E293B; }
+            body { font-family: Arial, sans-serif; padding: 2rem; color: #1E293B; background: white; }
             .header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; border-bottom: 3px solid #1565C0; padding-bottom: 1rem; }
             .logo { font-size: 1.8rem; font-weight: bold; color: #1565C0; }
             .logo span { color: #F5C500; }
@@ -272,78 +276,63 @@ function initInscription(evt) {
             .info strong { min-width: 120px; color: #1565C0; }
             .badge { display: inline-block; background: #1565C0; color: #fff; padding: 0.3rem 1rem; border-radius: 999px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 1rem; }
             .footer { margin-top: 2rem; text-align: center; font-size: 0.8rem; color: #94A3B8; border-top: 1px solid #E2E8F0; padding-top: 1rem; }
-          </style>
-        </head>
-        <body>
-          <div class="header">
+        </style>
+    </head>
+    <body>
+        <div class="header">
             <div class="logo">🎓 Edu<span>Event</span></div>
             <div>
-              <div style="font-size:0.85rem;color:#64748B;">Campus Henry Christophe — UEH</div>
-              <div style="font-size:0.85rem;color:#64748B;">Faculté des Sciences et de Génie</div>
+                <div style="font-size:0.85rem;color:#64748B;">Campus Henry Christophe — UEH</div>
+                <div style="font-size:0.85rem;color:#64748B;">Faculté des Sciences et de Génie</div>
             </div>
-          </div>
-
-          <p class="titre">✅ Confirmation d'inscription</p>
-          <span class="badge">${evt.categorie}</span>
-
-          <div class="section">
+        </div>
+        <p class="titre">✅ Confirmation d'inscription</p>
+        <span class="badge">${evt.categorie}</span>
+        <div class="section">
             <h3>Détails de l'événement</h3>
             <div class="info"><strong>Événement :</strong> <span>${evt.titre}</span></div>
             <div class="info"><strong>Date :</strong> <span>${dateFormatee}</span></div>
             <div class="info"><strong>Heure :</strong> <span>${evt.heure}</span></div>
             <div class="info"><strong>Lieu :</strong> <span>${evt.lieu}</span></div>
             <div class="info"><strong>Organisateur :</strong> <span>${evt.organisateur}</span></div>
-          </div>
-
-          <div class="section">
+        </div>
+        <div class="section">
             <h3>Informations du participant</h3>
-            <!-- Nou itilize varyab sove yo ki pa ka efase isit la -->
             <div class="info"><strong>Nom :</strong> <span>${nomSove}</span></div>
             <div class="info"><strong>Email :</strong> <span>${emailSove}</span></div>
             <div class="info"><strong>Faculté :</strong> <span>${faculteSove}</span></div>
             <div class="info"><strong>Téléphone :</strong> <span>${telSove || 'Non renseigné'}</span></div>
-          </div>
-
-          <div class="footer">
+        </div>
+        <div class="footer">
             EduEvent — Campus Henry Christophe de Limonade · UEH · 2026<br/>
             Ce document confirme votre inscription à l'événement ci-dessus.
-          </div>
-        </body>
-        </html>
-      `;
+        </div>
+    </body>
+    </html>
+    `;
 
-      const iframeKache = document.createElement('iframe');
-      iframeKache.style.position = 'fixed';
-      iframeKache.style.width = '0';
-      iframeKache.style.height = '0';
-      iframeKache.style.border = '0';
-      document.body.appendChild(iframeKache);
+    // Sove ansyen kòd paj la pou nou ka remete l apre
+    const ansyenPaj = document.body.innerHTML;
 
-      const docIframe = iframeKache.contentWindow.document;
-      docIframe.open();
-      docIframe.write(contenu);
-      docIframe.close();
+    // Ranplase paj la ak kontni konfimasyon an sèlman pou telefòn nan ka wè sa sèlman
+    document.body.innerHTML = contenu;
 
-      iframeKache.contentWindow.focus();
-      setTimeout(() => {
-        iframeKache.contentWindow.print();
-        setTimeout(() => {
-          document.body.removeChild(iframeKache);
-        }, 1000);
-      }, 500);
-    };
+    // Lese yon ti tan pou navigatè a chaje nouvo HTML la epi deklanche enpresyon an
+    setTimeout(() => {
+        window.print();
+        
+        // Remete sit la jan l te ye a apre moun nan fin enprime/sove PDF la
+        document.body.innerHTML = ansyenPaj;
 
-    msg.parentElement.appendChild(btnPrint);
+        // Netwaye fòm nan si li egziste toujou
+        if (typeof form !== 'undefined' && form.reset) {
+            form.reset();
+        }
+    }, 500);
+};
 
-    const ansyenOnclick = btnPrint.onclick;
-    btnPrint.onclick = () => {
-      ansyenOnclick();
-      
-      setTimeout(() => {
-        form.reset();
-        btnPrint.remove(); 
-      }, 1000); 
-    };
+// Mete bouton an nan paj la san nou pa janm double klike sou li anba a
+msg.parentElement.appendChild(btnPrint);
 
 
 
