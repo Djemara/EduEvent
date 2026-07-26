@@ -166,7 +166,9 @@
       weekday: 'short', day: 'numeric', month: 'long', year: 'numeric'
     });
  
-    const urgent = evt.places_restantes <= 10;
+   const placesKey = 'eduevent_places_' + evt.id;
+const placesActuelles = parseInt(localStorage.getItem(placesKey) || evt.places_restantes, 10);
+const urgent = placesActuelles <= 10;
  
     const article = document.createElement('article');
     article.className = 'card';
@@ -190,8 +192,8 @@
         </div>
         <p class="card__places ${urgent ? 'urgent' : ''}">
           ${urgent
-            ? '⚠️ Plus que ' + evt.places_restantes + ' places !'
-            : '✅ ' + evt.places_restantes + ' places disponibles'}
+  ? '⚠️ Plus que ' + placesActuelles + ' places !'
+  : '✅ ' + placesActuelles + ' places disponibles'}
         </p>
       </div>
       </div>
