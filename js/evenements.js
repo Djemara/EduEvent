@@ -45,8 +45,8 @@
     })
     .catch(() => {
       grid.innerHTML = `
-        <p style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--color-text-muted)">
-           Impossible de charger les événements. Assurez-vous d'utiliser un serveur local (Live Server).
+       <p style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--color-text-muted)">
+          ⚠️ Impossible de charger les événements. Assurez-vous d'utiliser un serveur local (Live Server).
         </p>`;
     });
  
@@ -182,17 +182,18 @@
       </div>
       <div class="card__body">
         <h3 class="card__title">${evt.titre}</h3>
-        <div class="card__meta">
+         <div class="card__meta">
           <span> ${dateFormatee}</span>
           <span> ${evt.heure}</span>
-          <span>${evt.lieu}</span>
+          <span> ${evt.lieu}</span>
           <span> ${evt.organisateur}</span>
         </div>
         <p class="card__places ${urgent ? 'urgent' : ''}">
           ${urgent
-            ? ' Plus que ' + evt.places_restantes + ' places !'
-            :  + evt.places_restantes + ' places disponibles'}
+            ? '⚠️ Plus que ' + evt.places_restantes + ' places !'
+            : '✅ ' + evt.places_restantes + ' places disponibles'}
         </p>
+      </div>
       </div>
      <div class="card__footer">
   <a href="detail.html?id=${evt.id}" class="btn btn--primary">Voir les détails</a>
@@ -244,7 +245,7 @@
       elGrille.classList.add('vue-btn--active');
       elListe.classList.remove('vue-btn--active');
       elGrid.classList.remove('vue-liste');
-      afficher(); // Sa a enpòtan pou rafrechi paj la
+      afficher(); 
     });
 
     elListe.addEventListener('click', function() {
