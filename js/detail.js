@@ -226,7 +226,7 @@ function initInscription(evt) {
     localStorage.setItem('eduevent_inscriptions', JSON.stringify(inscriptions));
     afficherMsg(msg, '✅ Inscription confirmée !', 'success');
 
-        /* ============================================================
+       /* ============================================================
    3. JESTYON BOUTON PDF (DONE BLOKE POU MICROSOFT EDGE)
 ============================================================ */
 const nomSove = nom;
@@ -239,6 +239,41 @@ if (ansyenBtn) {
     ansyenBtn.remove();
 }
 
+// 1. AJOUTE REGLE CSS SA YO NAN PAJ LA POU TELEFÒN YO KA KONPRANN SA POU YO KACHE
+const stylePrint = document.createElement('style');
+stylePrint.innerHTML = `
+  @media print {
+    header, footer, .detail-main, .detail-aside, 
+    .detail-banner, nav, .hero, .filtres-section,
+    #inscription-form, #commentaire-form, .partage-btns,
+    .btn-retour, script {
+      display: none !important;
+      visibility: hidden !important;
+    }
+    #bwat-konfimasyon-prent {
+      display: block !important;
+      visibility: visible !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      z-index: 99999 !important;
+      background: white !important;
+    }
+    #bwat-konfimasyon-prent * {
+      display: block !important;
+      visibility: visible !important;
+    }
+    .info {
+      display: flex !important;
+    }
+    .header {
+      display: flex !important;
+    }
+  }
+`;
+document.head.appendChild(stylePrint);
+
 const btnPrint = document.createElement('button');
 btnPrint.id = 'btn-pdf-dynamique';
 btnPrint.className = 'btn btn--outline';
@@ -248,7 +283,6 @@ btnPrint.style.justifyContent = 'center';
 btnPrint.textContent = '📄 Télécharger ma confirmation (PDF)';
 
 btnPrint.onclick = (e) => {
-    // Bloke fòm nan pou l pa resoumèt epi bay erè "déjà inscrit"
     e.preventDefault(); 
     e.stopPropagation();
 
@@ -259,98 +293,112 @@ btnPrint.onclick = (e) => {
         year: 'numeric' 
     });
 
-    const contenu = `
-    <html>
-    <head>
-        <title>Confirmation — EduEvent</title>
-        <style>
-            * { margin: 0; padding: 0; box-sizing: border-box; }
-            body { font-family: Arial, sans-serif; padding: 2rem; color: #1E293B; background: white; }
-            .header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; border-bottom: 3px solid #1565C0; padding-bottom: 1rem; }
-            .logo { font-size: 1.8rem; font-weight: bold; color: #1565C0; }
-            .logo span { color: #F5C500; }
-            .titre { font-size: 1.4rem; font-weight: bold; color: #1565C0; margin-bottom: 1.5rem; }
-            .section { background: #F8FAFF; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; border-left: 4px solid #1565C0; }
-            .section h3 { font-size: 0.8rem; text-transform: uppercase; color: #64748B; margin-bottom: 0.8rem; letter-spacing: 0.1em; }
-            .info { display: flex; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.95rem; }
-            .info strong { min-width: 120px; color: #1565C0; }
-            .badge { display: inline-block; background: #1565C0; color: #fff; padding: 0.3rem 1rem; border-radius: 999px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 1rem; }
-            .footer { margin-top: 2rem; text-align: center; font-size: 0.8rem; color: #94A3B8; border-top: 1px solid #E2E8F0; padding-top: 1rem; }
-        </style>
-    </head>
-    <body>
-        <div class="header">
-            <div class="logo">🎓 Edu<span>Event</span></div>
-            <div>
-                <div style="font-size:0.85rem;color:#64748B;">Campus Henry Christophe — UEH</div>
-                <div style="font-size:0.85rem;color:#64748B;">Faculté des Sciences et de Génie</div>
+    // Retire ansyen bwat la si l te egziste deja
+    const ansyenBwat = document.getElementById('bwat-konfimasyon-prent');
+    if (ansyenBwat) { ansyenBwat.remove(); }
+
+    // 2. KREYE YON DIV KACHE NAN PAJ LA KI GEN KONTNI AN SÈLMAN
+    const bwatKonfimasyon = document.createElement('div');
+    bwatKonfimasyon.id = 'bwat-konfimasyon-prent';
+    // Sou ekran nòmal li kache, l ap parèt sèlman lè y ap fè PDF/Enprime
+    bwatKonfimasyon.style.display = 'none'; 
+
+    bwatKonfimasyon.innerHTML = `
+        <div style="font-family: Arial, sans-serif; padding: 2rem; color: #1E293B; background: white;">
+            <div class="header" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; border-bottom: 3px solid #1565C0; padding-bottom: 1rem;">
+                <div style="font-size: 1.8rem; font-weight: bold; color: #1565C0;">🎓 Edu<span style="color:#F5C500;">Event</span></div>
+                <div>
+                    <div style="font-size:0.85rem;color:#64748B;">Campus Henry Christophe — UEH</div>
+                    <div style="font-size:0.85rem;color:#64748B;">Faculté des Sciences et de Génie</div>
+                </div>
+            </div>
+            <p style="font-size: 1.4rem; font-weight: bold; color: #1565C0; margin-bottom: 1.5rem;">✅ Confirmation d'inscription</p>
+            <span style="display: inline-block; background: #1565C0; color: #fff; padding: 0.3rem 1rem; border-radius: 999px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 1rem;">${evt.categorie}</span>
+            
+            <div style="background: #F8FAFF; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; border-left: 4px solid #1565C0;">
+                <h3 style="font-size: 0.8rem; text-transform: uppercase; color: #64748B; margin-bottom: 0.8rem; letter-spacing: 0.1em;">Détails de l'événement</h3>
+                <div class="info" style="display: flex; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.95rem;">
+                    <strong style="min-width: 120px; color: #1565C0;">Événement :</strong> <span>${evt.titre}</span>
+                </div>
+                <div class="info" style="display: flex; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.95rem;">
+                    <strong style="min-width: 120px; color: #1565C0;">Date :</strong> <span>${dateFormatee}</span>
+                </div>
+                <div class="info" style="display: flex; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.95rem;">
+                    <strong style="min-width: 120px; color: #1565C0;">Heure :</strong> <span>${evt.heure}</span>
+                </div>
+                <div class="info" style="display: flex; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.95rem;">
+                    <strong style="min-width: 120px; color: #1565C0;">Lieu :</strong> <span>${evt.lieu}</span>
+                </div>
+                <div class="info" style="display: flex; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.95rem;">
+                    <strong style="min-width: 120px; color: #1565C0;">Organisateur :</strong> <span>${evt.organisateur}</span>
+                </div>
+            </div>
+
+            <div style="background: #F8FAFF; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; border-left: 4px solid #1565C0;">
+                <h3>Informations du participant</h3>
+                <div class="info" style="display: flex; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.95rem;">
+                    <strong style="min-width: 120px; color: #1565C0;">Nom :</strong> <span>${nomSove}</span>
+                </div>
+                <div class="info" style="display: flex; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.95rem;">
+                    <strong style="min-width: 120px; color: #1565C0;">Email :</strong> <span>${emailSove}</span>
+                </div>
+                <div class="info" style="display: flex; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.95rem;">
+                    <strong style="min-width: 120px; color: #1565C0;">Faculté :</strong> <span>${faculteSove}</span>
+                </div>
+                <div class="info" style="display: flex; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.95rem;">
+                    <strong style="min-width: 120px; color: #1565C0;">Téléphone :</strong> <span>${telSove || 'Non renseigné'}</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; text-align: center; font-size: 0.8rem; color: #94A3B8; border-top: 1px solid #E2E8F0; padding-top: 1rem;">
+                EduEvent — Campus Henry Christophe de Limonade · UEH · 2026<br/>
+                Ce document confirme votre inscription à l'événement ci-dessus.
             </div>
         </div>
-        <p class="titre">✅ Confirmation d'inscription</p>
-        <span class="badge">${evt.categorie}</span>
-        <div class="section">
-            <h3>Détails de l'événement</h3>
-            <div class="info"><strong>Événement :</strong> <span>${evt.titre}</span></div>
-            <div class="info"><strong>Date :</strong> <span>${dateFormatee}</span></div>
-            <div class="info"><strong>Heure :</strong> <span>${evt.heure}</span></div>
-            <div class="info"><strong>Lieu :</strong> <span>${evt.lieu}</span></div>
-            <div class="info"><strong>Organisateur :</strong> <span>${evt.organisateur}</span></div>
-        </div>
-        <div class="section">
-            <h3>Informations du participant</h3>
-            <div class="info"><strong>Nom :</strong> <span>${nomSove}</span></div>
-            <div class="info"><strong>Email :</strong> <span>${emailSove}</span></div>
-            <div class="info"><strong>Faculté :</strong> <span>${faculteSove}</span></div>
-            <div class="info"><strong>Téléphone :</strong> <span>${telSove || 'Non renseigné'}</span></div>
-        </div>
-        <div class="footer">
-            EduEvent — Campus Henry Christophe de Limonade · UEH · 2026<br/>
-            Ce document confirme votre inscription à l'événement ci-dessus.
-        </div>
-    </body>
-    </html>
     `;
 
-    // Sove ansyen kòd paj la pou nou ka remete l apre
-    const ansyenPaj = document.body.innerHTML;
+    document.body.appendChild(bwatKonfimasyon);
 
-    // Ranplase paj la ak kontni konfimasyon an sèlman pou telefòn nan ka wè sa sèlman
-    document.body.innerHTML = contenu;
+    // 3. RELE METÒD ENPRESYON AN
+    // Kounye a CSS a pral bloke tout paj la otomatikman, se div sa a sèlman telefòn nan ap wè
+    window.print();
 
-    // Lese yon ti tan pou navigatè a chaje nouvo HTML la epi deklanche enpresyon an
+    // 4. NETWAYE FÒM NAN EPI RETIRE BOUTON AN
     setTimeout(() => {
-        window.print();
-        
-        // Remete sit la jan l te ye a apre moun nan fin enprime/sove PDF la
-        document.body.innerHTML = ansyenPaj;
-
-        // Netwaye fòm nan si li egziste toujou
         if (typeof form !== 'undefined' && form.reset) {
             form.reset();
         }
-    }, 500);
+        btnPrint.remove();
+        bwatKonfimasyon.remove();
+    }, 1000);
 };
 
-// Mete bouton an nan paj la san nou pa janm double klike sou li anba a
+/* 4. DIMINYE PLACES RESTANTES */
+const placesKey = 'eduevent_places_' + evt.id;
+const placesActuelles = parseInt(localStorage.getItem(placesKey) || evt.places_restantes, 10);
+
+if (placesActuelles > 0) {
+  const nouvellesPlaces = placesActuelles - 1;
+  localStorage.setItem(placesKey, nouvellesPlaces);
+  
+  const elTexte = document.getElementById('places-texte');
+  const elFill = document.getElementById('places-fill');
+  const urgent = nouvellesPlaces <= 10;
+  
+  if (elTexte) {
+    elTexte.innerHTML = urgent
+      ? `<span style="color:var(--cat-sport);font-weight:700">⚠️ Plus que ${nouvellesPlaces} places sur ${evt.places_total} !</span>`
+      : `<span>${nouvellesPlaces} places disponibles sur ${evt.places_total}</span>`;
+  }
+  
+  if (elFill) {
+    const pct = Math.round((nouvellesPlaces / evt.places_total) * 100);
+    elFill.style.width = pct + '%';
+  }
+}
+
 msg.parentElement.appendChild(btnPrint);
 
-
-
-    /* ============================================================
-       4. DIMINYE PLACES RESTANTES
-       ============================================================ */
-    const placesKey = 'eduevent_places_' + evt.id;
-    const placesActuelles = parseInt(localStorage.getItem(placesKey) || evt.places_restantes, 10);
-    if (placesActuelles > 0) {
-      localStorage.setItem(placesKey, placesActuelles - 1);
-      const nouvellesPlaces = placesActuelles - 1;
-      const urgent = nouvellesPlaces <= 10;
-      document.getElementById('places-texte').innerHTML = urgent
-        ? `<span style="color:var(--cat-sport);font-weight:700">⚠️ Plus que ${nouvellesPlaces} places sur ${evt.places_total} !</span>`
-        : `<span>${nouvellesPlaces} places disponibles sur ${evt.places_total}</span>`;
-      const pct = Math.round((nouvellesPlaces / evt.places_total) * 100);
-      document.getElementById('places-fill').style.width = pct + '%';
-    }
   });
 }
 
