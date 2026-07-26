@@ -223,26 +223,24 @@
       "culture"
     ]
   },
+  
   {
     "id": 13,
-    "titre": "Forum des Métiers du Numérique",
+    "titre": "Naissance d'un Écrivain  Conférence de Dany Laferrière",
     "categorie": "conference",
-    "description": "Rencontrez des professionnels du secteur numérique haïtien. Opportunités de stage, d'emploi et de mentorat pour les étudiants en informatique.",
-    "date": "2026-09-05",
-    "heure": "09:00",
-    "lieu": "Auditorium, Campus Limonade",
-    "organisateur": "Administration FSG & Partenaires",
-    "places_total": 250,
-    "places_restantes": 180,
-    "image": "images/events/forum-metiers.jpg",
-    "vedette": false,
-    "tags": [
-      "carrière",
-      "emploi",
-      "numérique",
-      "stage"
-    ]
-  },
+    "description": "Dans le cadre de sa tournée en Haïti, organisée par le rectorat de l'Université d'État d'Haïti (UEH), l'illustre écrivain haïtiano-canadien Dany Laferrière,Immortel et Membre de l'Académie française , anime une conférence exceptionnelle intitulée 'Naissance d'un Écrivain'. Une occasion unique de découvrir son parcours littéraire, ses inspirations et sa vision de la littérature haïtienne. Ne manquez pas cette rencontre historique au Campus Henry Christophe de Limonade !",
+    "date": "2026-07-22",
+    "heure": "10:00",
+    "lieu": "Campus Henry Christophe de Limonade (CHCL)",
+    "organisateur": "Rectorat de l'Université d'État d'Haïti (UEH)",
+    "places_total": 500,
+    "places_restantes": 320,
+    "image": "images/events/dany-laferriere.png",
+    "vedette": true,
+    "tags": ["littérature", "Dany Laferrière", "Académie française", "conférence", "UEH"]
+  
+
+},
   {
     "id": 14,
     "titre": "Atelier Python & Data Science",
