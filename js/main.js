@@ -70,11 +70,11 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
     // 2. Pase nan pwochen imaj la (tounen nan 0 si l rive nan fen)
     currentSlide = (currentSlide + 1) % slides.length;
     
-    // 3. Ajoute klas active sou nouvo imaj la (KORIJE)
+  
     slides[currentSlide].classList.add('active');
   }
 
-  // Lanse revèy la pou chanje imaj yo otomatikman
+
   setInterval(nextSlide, slideInterval);
 })();
 
@@ -135,16 +135,17 @@ function creerCarteEvenement(evt) {
     </div>
     <div class="card__body">
       <h3 class="card__title">${evt.titre}</h3>
-      <div class="card__meta">
-        <span> ${dateFormatee}</span>
-        <span> ${evt.heure}</span>
-        <span> ${evt.lieu}</span>
-      </div>
-      <p class="card__places ${urgent ? 'urgent' : ''}">
-        ${urgent
-          ? ' Plus que ' + evt.places_restantes + ' places !'
-          : ' ' + evt.places_restantes + ' places disponibles'}
-      </p>
+     <div class="card__meta">
+          <span> ${dateFormatee}</span>
+          <span> ${evt.heure}</span>
+          <span> ${evt.lieu}</span>
+          <span> ${evt.organisateur}</span>
+        </div>
+        <p class="card__places ${urgent ? 'urgent' : ''}">
+          ${urgent
+            ? '⚠️ Plus que ' + evt.places_restantes + ' places !'
+            : '✅ ' + evt.places_restantes + ' places disponibles'}
+        </p>
     </div>
     <div class="card__footer">
       <a href="detail.html?id=${evt.id}" class="btn btn--primary">Voir les détails</a>
@@ -409,12 +410,10 @@ function initAccessibilitySize() {
   });
 }
 
-/* 🧠 L'ASTUCE ANTI-BUG : On vérifie si le DOM est déjà chargé */
 if (document.readyState !== "loading") {
-  // Le DOM est déjà prêt, on lance la fonction tout de suite !
+
   initAccessibilitySize();
 } else {
-  // Le DOM charge encore, on attend l'événement normalement
   document.addEventListener("DOMContentLoaded", initAccessibilitySize);
 }
   /* ============================================================
@@ -423,9 +422,7 @@ if (document.readyState !== "loading") {
   const scrollTopBtn = document.getElementById("scroll-top-btn");
 
   if (scrollTopBtn) {
-    // 1. Écouter le défilement de la page pour afficher/cacher le bouton
     window.addEventListener("scroll", () => {
-      // Le bouton apparaît si l'utilisateur descend de plus de 300 pixels
       if (window.scrollY > 300) {
         scrollTopBtn.classList.add("visible");
       } else {
@@ -433,11 +430,10 @@ if (document.readyState !== "loading") {
       }
     });
 
-    // 2. Remonter en haut de page en douceur lors du clic
     scrollTopBtn.addEventListener("click", () => {
       window.scrollTo({
         top: 0,
-        behavior: "smooth" // Fait remonter la page de manière fluide et douce
+        behavior: "smooth" 
       });
     });
   }
