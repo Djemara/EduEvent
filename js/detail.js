@@ -104,11 +104,11 @@
     document.getElementById('banner-meta').innerHTML = `
       <span> ${dateFormatee}</span>
       <span> ${evt.heure}</span>
-      <span>${evt.lieu}</span>
+      <span> ${evt.lieu}</span>
     `;
  
     /* Description */
-    document.getElementById('detail-description').textContent = evt.description;
+   document.getElementById('detail-description').textContent = evt.description;
  
     /* Infos liste */
     document.getElementById('info-list').innerHTML = `
@@ -226,32 +226,34 @@ function initInscription(evt) {
     localStorage.setItem('eduevent_inscriptions', JSON.stringify(inscriptions));
     afficherMsg(msg, '✅ Inscription confirmée !', 'success');
 
-    /* ============================================================
-       3. JESTYON BOUTON PDF (KORIDJE POU L PA DOUBLE)
+        /* ============================================================
+       3. JESTYON BOUTON PDF (DONE BLOKE POU MICROSOFT EDGE)
        ============================================================ */
-    /* ============================================================
-       3. JESTYON BOUTON PDF (KÒD SENP KI PA GATE PAJ LA)
-       ============================================================ */
-    let btnPrint = document.getElementById('btn-pdf-dynamique');
-    
-    if (btnPrint) {
-      btnPrint.onclick = null;
-    } else {
-      btnPrint = document.createElement('button');
-      btnPrint.id = 'btn-pdf-dynamique';
-      btnPrint.className = 'btn btn--outline';
-      btnPrint.style.marginTop = '1rem';
-      btnPrint.style.width = '100%';
-      btnPrint.style.justifyContent = 'center';
-      msg.parentElement.appendChild(btnPrint);
+  
+    const nomSove = nom;
+    const emailSove = email;
+    const faculteSove = faculte;
+    const telSove = telephone;
+
+  
+    const ansyenBtn = document.getElementById('btn-pdf-dynamique');
+    if (ansyenBtn) {
+      ansyenBtn.remove();
     }
 
+    
+    const btnPrint = document.createElement('button');
+    btnPrint.id = 'btn-pdf-dynamique';
+    btnPrint.className = 'btn btn--outline';
+    btnPrint.style.marginTop = '1rem';
+    btnPrint.style.width = '100%';
+    btnPrint.style.justifyContent = 'center';
     btnPrint.textContent = '📄 Télécharger ma confirmation (PDF)';
-
+    
     btnPrint.onclick = () => {
       const dateFormatee = new Date(evt.date).toLocaleDateString('fr-FR', {
         weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
-  });
+      });
 
       const contenu = `
         <html>
@@ -295,10 +297,11 @@ function initInscription(evt) {
 
           <div class="section">
             <h3>Informations du participant</h3>
-            <div class="info"><strong>Nom :</strong> <span>${nom}</span></div>
-            <div class="info"><strong>Email :</strong> <span>${email}</span></div>
-            <div class="info"><strong>Faculté :</strong> <span>${faculte}</span></div>
-            <div class="info"><strong>Téléphone :</strong> <span>${telephone || 'Non renseigné'}</span></div>
+            <!-- Nou itilize varyab sove yo ki pa ka efase isit la -->
+            <div class="info"><strong>Nom :</strong> <span>${nomSove}</span></div>
+            <div class="info"><strong>Email :</strong> <span>${emailSove}</span></div>
+            <div class="info"><strong>Faculté :</strong> <span>${faculteSove}</span></div>
+            <div class="info"><strong>Téléphone :</strong> <span>${telSove || 'Non renseigné'}</span></div>
           </div>
 
           <div class="footer">
@@ -309,21 +312,39 @@ function initInscription(evt) {
         </html>
       `;
 
-      // NOUVÈL METÒD SÈN : Si se sou telefòn, nou pèmèt li ouvè onglet a nòmal san l pa detwi paj aktyèl la
-      const fenetre = window.open('', '_blank');
-      if (fenetre) {
-        fenetre.document.write(contenu);
-        fenetre.document.close();
-        fenetre.setTimeout(() => {
-          fenetre.print();
-        }, 500);
-      } else {
-        // Sekirite si telefòn lan bloke pop-up la nèt : nou avèti l
-        alert("Veuillez autoriser les fenêtres pop-up sur votre téléphone pour télécharger le PDF.");
-      }
+      const iframeKache = document.createElement('iframe');
+      iframeKache.style.position = 'fixed';
+      iframeKache.style.width = '0';
+      iframeKache.style.height = '0';
+      iframeKache.style.border = '0';
+      document.body.appendChild(iframeKache);
+
+      const docIframe = iframeKache.contentWindow.document;
+      docIframe.open();
+      docIframe.write(contenu);
+      docIframe.close();
+
+      iframeKache.contentWindow.focus();
+      setTimeout(() => {
+        iframeKache.contentWindow.print();
+        setTimeout(() => {
+          document.body.removeChild(iframeKache);
+        }, 1000);
+      }, 500);
     };
 
-    form.reset();
+    msg.parentElement.appendChild(btnPrint);
+
+    const ansyenOnclick = btnPrint.onclick;
+    btnPrint.onclick = () => {
+      ansyenOnclick();
+      
+      setTimeout(() => {
+        form.reset();
+        btnPrint.remove(); 
+      }, 1000); 
+    };
+
 
 
     /* ============================================================
@@ -368,15 +389,15 @@ function initInscription(evt) {
       const note  = noteSelectionnee;
  
       if (!nom) {
-        afficherMsg(msg, 'Veuillez entrer votre nom.', 'error');
+        afficherMsg(msg, ' ⚠️Veuillez entrer votre nom.', 'error');
         return;
       }
       if (!texte) {
-        afficherMsg(msg, 'Veuillez écrire un commentaire.', 'error');
+        afficherMsg(msg, ' ⚠️Veuillez écrire un commentaire.', 'error');
         return;
       }
       if (note === 0) {
-        afficherMsg(msg, 'Veuillez sélectionner une note.', 'error');
+        afficherMsg(msg, ' ⚠️Veuillez sélectionner une note.', 'error');
         return;
       }
  
@@ -392,7 +413,7 @@ function initInscription(evt) {
  
       const tous = [...commentairesDefaut, ...stockes];
       afficherCommentaires(tous);
-      afficherMsg(msg, ' Commentaire publié avec succès !', 'success');
+      afficherMsg(msg, '✅ Commentaire publié avec succès !', 'success');
       form.reset();
       noteSelectionnee = 0;
       document.querySelectorAll('.etoile').forEach(e => e.classList.remove('active'));
