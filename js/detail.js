@@ -239,7 +239,6 @@ if (ansyenBtn) {
     ansyenBtn.remove();
 }
 
-// 1. AJOUTE REGLE CSS SA YO NAN PAJ LA POU TELEFÒN YO KA KONPRANN SA POU YO KACHE
 const stylePrint = document.createElement('style');
 stylePrint.innerHTML = `
   @media print {
