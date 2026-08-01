@@ -107,6 +107,54 @@
  
     nbAffiches = PAR_PAGE;
     afficher();
+      /* ============================================================
+     RÉINITIALISATION DES FILTRES (BOUTONS RESET)
+  ============================================================ */
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      // 1. Remettre les variables d'état à zéro
+      filtreCategorie = 'tous';
+      filtreDate      = 'tous';
+      recherche       = '';
+
+      // 2. Remettre les éléments HTML à leur valeur par défaut
+      const selectCat = document.getElementById('filtre-categorie');
+      const selectDate = document.getElementById('filtre-date');
+      
+      if (selectCat) selectCat.value = 'tous';
+      if (selectDate) selectDate.value = 'tous';
+      if (searchInput) searchInput.value = '';
+      if (searchClear) searchClear.classList.remove('visible');
+
+      
+      appliquerFiltres();
+    });
+  }
+
+   /* -- Bouton sekou lè grid la vid (no-results-reset) -- */
+  const noResultReset = document.getElementById('no-results-reset');
+  if (noResultReset) {
+    noResultReset.addEventListener('click', () => {
+      // 1. Remet tout variable yo a zéro touswit
+      filtreCategorie = 'tous';
+      filtreDate      = 'tous';
+      recherche       = '';
+
+      
+      const selectCat = document.getElementById('filtre-categorie');
+      const selectDate = document.getElementById('filtre-date');
+      
+      if (selectCat) selectCat.value = 'tous';
+      if (selectDate) selectDate.value = 'tous';
+      if (searchInput) searchInput.value = '';
+      if (searchClear) searchClear.classList.remove('visible');
+
+      
+      appliquerFiltres();
+    });
+  }
+
+
   }
  
   /* ============================================================
